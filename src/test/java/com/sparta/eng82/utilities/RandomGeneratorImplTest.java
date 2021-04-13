@@ -18,7 +18,7 @@ class RandomGeneratorImplTest {
 
     @Test
     public void testCorrectReturn() {
-        assertEquals(9, randomGenerator.randomInt(10, 9));
+        assertEquals(9, randomGenerator.randomInt(9, 10));
         // range 9 to 11 can return 9 or 10, but not 11
     }
 
@@ -26,7 +26,7 @@ class RandomGeneratorImplTest {
     public void testRangeIsCorrect() {
         int upper = 20;
         int lower = 10;
-        int result = randomGenerator.randomInt(upper, lower);
+        int result = randomGenerator.randomInt(lower, upper);
         if (result <= upper && result >= lower) {
             assertTrue(true);
         }

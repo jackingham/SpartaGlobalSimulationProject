@@ -6,8 +6,8 @@ import com.sparta.eng82.model.TrainingCentre;
 import java.util.List;
 
 public class OutputManager implements Output {
-    private List<TrainingCentre> listOfCentres;
-    private List<Trainee> listOfTrainee;
+    private final List<TrainingCentre> listOfCentres;
+    private final List<Trainee> listOfTrainee;
 
 
     public OutputManager(List<TrainingCentre> listOfCentres, List<Trainee> listOfTrainee) {
