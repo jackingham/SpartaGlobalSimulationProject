@@ -1,6 +1,5 @@
 package com.sparta.eng82.utilities;
 
-import java.util.Locale;
 import java.util.Scanner;
 
 public class InputValidator {

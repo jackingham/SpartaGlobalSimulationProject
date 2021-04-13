@@ -1,8 +1,7 @@
-package com.sparta.eng82.ViewTests;
+package com.sparta.eng82.view;
 
-import com.sparta.eng82.View.OutputManager;
-import com.sparta.eng82.objects.Trainee;
-import com.sparta.eng82.objects.TrainingCentre;
+import com.sparta.eng82.model.Trainee;
+import com.sparta.eng82.model.TrainingCentre;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

@@ -1,4 +1,4 @@
-package com.sparta.eng82.objects;
+package com.sparta.eng82.model;
 
 public class Trainee {
     private static int idIncrementor = 0;

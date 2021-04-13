@@ -1,4 +1,4 @@
-package com.sparta.eng82.objects;
+package com.sparta.eng82.model;
 
 import java.util.ArrayList;
 import java.util.PriorityQueue;
@@ -8,9 +8,9 @@ public class TrainingCentre {
     private static final Queue<Trainee> waitingList = new PriorityQueue<>();
     public static ArrayList<TrainingCentre> trainingCentres = new ArrayList<>();
     private static int idIncrementor = 0;
+    private final int id;
     private Trainee[] traineeArray = new Trainee[100];
     private boolean open = true;
-    private final int id;
 
     public TrainingCentre() {
         id = idIncrementor++;
@@ -28,7 +28,7 @@ public class TrainingCentre {
         try {
             waitingList.add(t);
             return true;
-        } catch (IllegalStateException e){
+        } catch (IllegalStateException e) {
             return false;
         }
     }

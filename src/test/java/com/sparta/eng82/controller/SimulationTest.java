@@ -1,12 +1,10 @@
-package com.sparta.eng82.epicthree;
+package com.sparta.eng82.controller;
 
-import com.sparta.eng82.epicthree.simulation.Simulation;
-import com.sparta.eng82.epicthree.simulation.SimulationImpl;
-import com.sparta.eng82.objects.TrainingCentre;
+import com.sparta.eng82.controller.Simulation;
+import com.sparta.eng82.controller.SimulationImpl;
+import com.sparta.eng82.model.TrainingCentre;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class SimulationTest {
 

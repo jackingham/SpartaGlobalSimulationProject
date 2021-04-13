@@ -1,4 +1,4 @@
-package com.sparta.eng82.View;
+package com.sparta.eng82.view;
 
 public interface Output {
     int numberOfCentres();

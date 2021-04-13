@@ -1,7 +1,7 @@
-package com.sparta.eng82.epicthree.simulation;
+package com.sparta.eng82.controller;
 
-import com.sparta.eng82.objects.Trainee;
-import com.sparta.eng82.objects.TrainingCentre;
+import com.sparta.eng82.model.Trainee;
+import com.sparta.eng82.model.TrainingCentre;
 
 import java.util.ArrayList;
 

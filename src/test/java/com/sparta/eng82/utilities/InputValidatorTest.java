@@ -1,11 +1,11 @@
-package com.sparta.eng82;
+package com.sparta.eng82.utilities;
 
-import static org.junit.Assert.*;
+import org.junit.Test;
+
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 
-import com.sparta.eng82.utilities.InputValidator;
-import org.junit.Test;
+import static org.junit.Assert.*;
 
 
 public class InputValidatorTest {
@@ -17,7 +17,7 @@ public class InputValidatorTest {
         String input = "5";
         InputStream in = new ByteArrayInputStream(input.getBytes());
         System.setIn(in);
-        assertEquals("5", obj.verifyInteger());
+        assertEquals("5", InputValidator.verifyInteger());
 
     }
 }
