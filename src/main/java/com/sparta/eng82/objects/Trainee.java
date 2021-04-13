@@ -1,9 +1,9 @@
 package com.sparta.eng82.objects;
 
 public class Trainee {
+    private static int idIncrementor = 0;
     private final int id;
     private final int joinMonth;
-    private static int idIncrementor = 0;
 
 
     public Trainee(int joinMonth) {

@@ -4,14 +4,15 @@ package com.sparta.eng82.epicthree.utilities;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class RandomGeneratorImplTest {
 
     static RandomGeneratorImpl randomGenerator = null;
 
     @BeforeAll
-    static void init(){
+    static void init() {
         randomGenerator = new RandomGeneratorImpl();
     }
 
@@ -26,7 +27,7 @@ class RandomGeneratorImplTest {
         int upper = 20;
         int lower = 10;
         int result = randomGenerator.randomInt(upper, lower);
-        if (result <= upper && result >= lower){
+        if (result <= upper && result >= lower) {
             assertTrue(true);
         }
     }

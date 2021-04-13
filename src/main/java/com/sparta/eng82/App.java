@@ -7,14 +7,12 @@ import java.util.List;
 
 /**
  * Hello world!
- *
  */
 public class App {
 
-    private List<TrainingCentre> listOfCentres = new ArrayList<>();
+    private final List<TrainingCentre> listOfCentres = new ArrayList<>();
 
-    public static void main( String[] args )
-    {
-        System.out.println( "Hello World!" );
+    public static void main(String[] args) {
+        System.out.println("Hello World!");
     }
 }
