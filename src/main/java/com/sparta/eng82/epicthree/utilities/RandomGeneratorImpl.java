@@ -1,4 +1,4 @@
-package com.sparta.eng82.epicthree.util;
+package com.sparta.eng82.epicthree.utilities;
 
 import java.util.Random;
 
