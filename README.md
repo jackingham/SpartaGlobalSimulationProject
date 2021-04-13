@@ -49,9 +49,9 @@ ArrayList<Trainee> centre (max capacity 100)
 ArrayList<Trainee> waitingList
 
 ## Interfaces
-int numberOfCentres();
-int numberOfOpenCentres();
-int numberOfFullCentres();
-int numberOfTraineesInTraining();
-int numberOfTraineesInWaiting();
+- int numberOfCentres();
+- int numberOfOpenCentres();
+- int numberOfFullCentres();
+- int numberOfTraineesInTraining();
+- int numberOfTraineesInWaiting();
   
