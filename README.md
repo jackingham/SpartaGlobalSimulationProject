@@ -39,3 +39,11 @@ At the end of the simulation, output should show:
 #### Help documentation is updated
 
 #### Feature is OK’d by stakeholders
+
+
+## Objects
+Trainee(final id++, final joinMonth)
+
+## Collections
+ArrayList<Trainee> centre (max capacity 100)
+ArrayList<Trainee> waitingList
