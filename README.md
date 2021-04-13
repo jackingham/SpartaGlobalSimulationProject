@@ -42,11 +42,11 @@ At the end of the simulation, output should show:
 
 
 ## Objects
-Trainee(final id++, final joinMonth)
+- Trainee(final id++, final joinMonth)
 
 ## Collections
-ArrayList<Trainee> centre (max capacity 100)
-ArrayList<Trainee> waitingList
+- ArrayList<Trainee> centre (max capacity 100)
+- ArrayList<Trainee> waitingList
 
 ## Interfaces
 - int numberOfCentres();
