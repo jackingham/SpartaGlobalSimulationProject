@@ -8,11 +8,7 @@ public class TrainingCentre {
     private final int id;
     private boolean open = true;
 
-    private ArrayList<Trainee> traineeArray = new ArrayList<>();
-
-    public ArrayList<Trainee> getTraineeArray() {
-        return traineeArray;
-    }
+    private final ArrayList<Trainee> traineeArray = new ArrayList<>();
 
     public TrainingCentre() {
         id = idIncrementor++;
@@ -34,5 +30,12 @@ public class TrainingCentre {
         return traineeArray.size();
     }
 
+    public void addTraineeToCentre(Trainee trainee) {
+        this.traineeArray.add(trainee);
+    }
 
+    public void takeInTrainees() {
+
+
+    }
 }

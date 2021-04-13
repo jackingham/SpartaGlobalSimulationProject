@@ -1,7 +1,10 @@
 package com.sparta.eng82.controller;
 
+import com.sparta.eng82.model.TrainingCentre;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class SimulationTest {
 
@@ -9,16 +12,16 @@ class SimulationTest {
 
     @BeforeEach
     void setUp() {
-//        sim = new SimulationImpl();
+        sim = new SimulationImpl();
     }
 
     @Test
     void generateTraineesTest() {
-//        assertEquals(5, sim.generateTrainees(5).size());
+        assertEquals(5, sim.generateTrainees(5).size());
     }
 
     @Test
     void generateTrainingCentreTest() {
-//        assertEquals(TrainingCentre.class.getTypeName(), sim.generateTrainingCentre().getClass().getTypeName());
+        assertEquals(TrainingCentre.class.getTypeName(), sim.generateTrainingCentre().getClass().getTypeName());
     }
 }

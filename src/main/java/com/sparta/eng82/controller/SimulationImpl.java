@@ -5,14 +5,14 @@ import com.sparta.eng82.model.TrainingCentre;
 import com.sparta.eng82.utilities.RandomGeneratorImpl;
 
 import java.util.ArrayList;
-import java.util.PriorityQueue;
+import java.util.LinkedList;
 import java.util.Queue;
 
 public class SimulationImpl implements Simulation {
 
-    static int month = 0;
-    private static final Queue<Trainee> waitingList = new PriorityQueue<>();
+    private static final Queue<Trainee> waitingList = new LinkedList<>();
     public static ArrayList<TrainingCentre> trainingCentres = new ArrayList<>();
+    static int month = 0;
     private final RandomGeneratorImpl randomGenerator = new RandomGeneratorImpl();
 
     @Override
@@ -31,30 +31,32 @@ public class SimulationImpl implements Simulation {
         return new TrainingCentre();
     }
 
-    void startSimulation(int numberOfMonths) {
+    public void startSimulation(int numberOfMonths) {
         while (month <= numberOfMonths) {
-
             if (month != 0) {
-                ArrayList<Trainee> tempTrainees = generateTrainees(randomGenerator.randomInt(20, 31));
+                waitingList.addAll(generateTrainees(randomGenerator.randomInt(20, 31)));
 
                 if (month % 2 == 0) {
-                    generateTrainingCentre();
+                    trainingCentres.add(generateTrainingCentre());
                 }
-                //takeInTrainees();
+
+                for (TrainingCentre centre : trainingCentres) {
+                    if (centre.getTraineeArraySize() < 100) {
+                        int traineeIntake = randomGenerator.randomInt(0, 21);
+                        if (traineeIntake < 100 - centre.getTraineeArraySize()) {
+                            for (int i = 0; i < traineeIntake; i++) {
+                                centre.addTraineeToCentre(waitingList.poll());
+                            }
+                        } else {
+                            for (int j = 0; j < 100 - centre.getTraineeArraySize(); j++) {
+                                centre.addTraineeToCentre(waitingList.poll());
+                            }
+                        }
+                    }
+                }
             }
 
             month++;
         }
     }
-
-    public boolean addToWaitingList(Trainee t) {
-        try {
-            waitingList.add(t);
-            return true;
-        } catch (IllegalStateException e) {
-            return false;
-        }
-    }
-
 }
-
