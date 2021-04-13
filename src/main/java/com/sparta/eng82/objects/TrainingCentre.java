@@ -1,5 +1,6 @@
 package com.sparta.eng82.objects;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.PriorityQueue;
 import java.util.Queue;
@@ -9,6 +10,9 @@ public class TrainingCentre {
     private Trainee[] traineeArray = new Trainee[100];
 
     private static Queue<Trainee> waitingList = new PriorityQueue<>();
+
+    public static ArrayList<TrainingCentre> trainingCentres = new ArrayList<>();
+
 
     public boolean addToWaitingList(Trainee t){
         try {
