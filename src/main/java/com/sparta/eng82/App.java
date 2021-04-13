@@ -1,6 +1,7 @@
 package com.sparta.eng82;
 
 import com.sparta.eng82.objects.TrainingCentre;
+import com.sparta.eng82.utilities.InputValidator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +16,6 @@ public class App {
 
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
+        System.out.println(InputValidator.getUserInput());
     }
 }
