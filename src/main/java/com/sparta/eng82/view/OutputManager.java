@@ -4,15 +4,19 @@ import com.sparta.eng82.model.Trainee;
 import com.sparta.eng82.model.TrainingCentre;
 
 import java.util.List;
+import java.util.Queue;
 
 public class OutputManager implements Output {
+    //    private
     private List<TrainingCentre> listOfCentres;
     private List<Trainee> listOfTrainee;
+    private Queue waitingList;
 
 
-    public OutputManager(List<TrainingCentre> listOfCentres, List<Trainee> listOfTrainee) {
+    public OutputManager(List<TrainingCentre> listOfCentres, List<Trainee> listOfTrainee, Queue waitingList) {
         this.listOfCentres = listOfCentres;
         this.listOfTrainee = listOfTrainee;
+        this.waitingList = waitingList;
     }
 
 
@@ -45,18 +49,20 @@ public class OutputManager implements Output {
 
     @Override
     public int numberOfTraineesInTraining() {
-        int fullCentres = 0;
-        for (TrainingCentre fullCentre : listOfCentres) {
-            if (!fullCentre.isOpen()) {
-                fullCentres++;
+        int traineesTraining = 0;
+        for (TrainingCentre trainingCentre : listOfCentres) {
+            if (trainingCentre.getTraineeArraySize() != 0) {
+                traineesTraining += trainingCentre.getTraineeArraySize();
+                System.out.println(trainingCentre.getTraineeArraySize());
+                break;
             }
         }
-        return fullCentres;
+        return traineesTraining;
     }
 
     @Override
     public int numberOfTraineesInWaiting() {
-        return 0;
+        return waitingList.size();
     }
 
 
