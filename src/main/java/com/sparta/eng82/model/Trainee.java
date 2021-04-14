@@ -10,7 +10,7 @@ public class Trainee {
     public Trainee(int joinMonth) {
         this.joinMonth = joinMonth;
         id = idIncrementor++;
-        this.courseName = randomlyPickCourse();
+        this.courseName = CourseTypes.getRandomCourseType();
     }
 
     public int getId() {

@@ -7,11 +7,11 @@ public class TrainingCentre {
     private static int idIncrementor = 0;
     private final int id;
     private final ArrayList<Trainee> traineeArray = new ArrayList<>();
-    private final int traineeCapcity;
+    private int traineeCapcity;
     private static int numberOfCentreType;
 
-    public TrainingCentre(int traineeCapcity) {
-        this.traineeCapcity = traineeCapcity;
+    public TrainingCentre(CentreTypes ct) {
+
         id = idIncrementor++;
 
     }

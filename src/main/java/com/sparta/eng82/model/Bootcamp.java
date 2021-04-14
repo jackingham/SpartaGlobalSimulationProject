@@ -2,8 +2,10 @@ package com.sparta.eng82.model;
 
 public class Bootcamp extends TrainingCentre {
 
-    public Bootcamp(String centreCourseName){
-        super(200);
+    private static final int capacity = 500;
+
+    public Bootcamp(){
+        super(CentreTypes.BOOTCAMP);
     }
 
     @Override
