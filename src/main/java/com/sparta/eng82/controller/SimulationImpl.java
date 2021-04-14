@@ -31,6 +31,7 @@ public class SimulationImpl implements Simulation {
         return new TrainingCentre();
     }
 
+    @Override
     public void startSimulation(int numberOfMonths) {
         while (month <= numberOfMonths) {
             if (month != 0) {
@@ -58,5 +59,17 @@ public class SimulationImpl implements Simulation {
 
             month++;
         }
+    }
+
+    public Queue<Trainee> getWaitingList() {
+        return waitingList;
+    }
+
+    public ArrayList<TrainingCentre> getTrainingCentres() {
+        return trainingCentres;
+    }
+
+    public int getMonth() {
+        return month;
     }
 }
