@@ -71,7 +71,7 @@ As a user, I want to track training consistently so that i can review the centre
 
 #### Solution Summary - *Patrick Walsh*
 
-> Initially discussed and designed 2 interfaces called Output.java and Filewriter.java. We then made a class and implemented the Output Interface. Following Test > Driven Development Framework, we began creating the test we needed to pass to fulfil the requirements for each method. Once we had our failing tests, we began peer > programming the methods functionality to pass the tests. 
+> Initially discussed and designed 2 interfaces called Output.java and Filewriter.java. We then made a class and implemented the Output Interface. Following Test Driven Development Framework, we began creating the test we needed to pass to fulfil the requirements for each method. Once we had our failing tests, we began peer programming the methods functionality to pass the tests. 
 
 ## Epic 2
 As a user, I want to be able to input either months, years or a combination of both so there's flexibility in the amount of time I can input.
@@ -81,18 +81,17 @@ As a user, I want to be able to input either months, years or a combination of b
 > There is a InputValidator class which contains two methods, getUserInput() and verifyInteger().
 >
 > getUserInput() simply asks the user what type of timeframe they will like to use (a choice of months, years or months&years).
-> After the user inputs their choice, they then input the amount of time they wants elapsed within the simulation, this must be an
-> integer, any other data type will promt the user to retry their input. 
+> After the user inputs their choice, they then input the amount of time they wants elapsed within the simulation, this must be an integer, any other data type will promt the user to retry their input. 
 >
-> The verifyInteger() method checks the inputted time (e.g. 5 months), if this input is not an integer, the message: "That's not a number" is printed back to the user > and the user will be re-promted to input an integer. 
+> The verifyInteger() method checks the inputted time (e.g. 5 months), if this input is not an integer, the message: "That's not a number" is printed back to the user and the user will be re-promted to input an integer. 
 
 ## Epic 3
 As a user, I want to simulate trainee acquisition so I can predict influx and possible upcoming business decisions.
 
 #### Solution Summary - *Alasdair Malcolm*
 
-> Firstly we designed the 2 neccesary Interfaces to give a uniformity to the project, then created several unit tests for the expected scenarios drawn from the > interfaces.
+> Firstly we designed the 2 neccesary Interfaces to give a uniformity to the project, then created several unit tests for the expected scenarios drawn from the interfaces.
 >
-> After that was all completed and merged back to the group project, we implamented our 2 classes "Random Generator" and "SimulationImpl". These allowed for repeated > use of a random integer generator and the actual running simulation.
+> After that was all completed and merged back to the group project, we implamented our 2 classes "Random Generator" and "SimulationImpl". These allowed for repeated use of a random integer generator and the actual running simulation.
 >
-> The simulation implamented a main loop, which would run for the input value of months and perform the requirements; generating trainees, generating centers and > populating both the centers and waiting list.
+> The simulation implamented a main loop, which would run for the input value of months and perform the requirements; generating trainees, generating centers and populating both the centers and waiting list.
