@@ -72,4 +72,6 @@ public class SimulationImpl implements Simulation {
     public int getMonth() {
         return month;
     }
+
+
 }

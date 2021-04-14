@@ -21,7 +21,7 @@ public class testOutput {
     Trainee trainee = new Trainee(1);
     List<TrainingCentre> listOfCentres = new ArrayList<>();
     List<Trainee> listOfTrainee = new ArrayList<>();
-    OutputManager outputManager = new OutputManager(listOfCentres, listOfTrainee, waitingList);
+    OutputManager outputManager = new OutputManager(listOfCentres, waitingList);
 
 
     @Test
@@ -39,19 +39,6 @@ public class testOutput {
         Assertions.assertEquals(1, outputManager.numberOfOpenCentres());
     }
 
-//    @Test
-//    @DisplayName("Test for the output of number of full centres")
-//    public void shouldReturnNumberOfFullCentres() {
-//        listOfCentres.add(trainingCentre);
-//        listOfCentres.add(trainingCentre1);
-//        listOfCentres.add(trainingCentre2);
-//        listOfCentres.add(trainingCentre3);
-//
-//        trainingCentre.isOpen();
-//        trainingCentre2.isOpen();
-//
-//        Assertions.assertEquals(2, outputManager.numberOfFullCentres());
-//    }
 
     @Test
     @DisplayName("Test for the output of number of trainees")
@@ -71,5 +58,13 @@ public class testOutput {
         waitingList.add(trainee);
 
         Assertions.assertEquals(1, outputManager.numberOfTraineesInWaiting());
+    }
+
+    @Test
+    @DisplayName("Test for the output of summarised outputs")
+    public void shouldReturnSummaryOfOutputs() {
+
+
+        Assertions.assertEquals(1, outputManager.summary());
     }
 }
