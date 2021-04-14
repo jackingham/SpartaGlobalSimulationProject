@@ -1,15 +1,5 @@
 package com.sparta.eng82.view;
 
-import com.sparta.eng82.model.Trainee;
-import com.sparta.eng82.model.TrainingCentre;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Queue;
-
 public class testOutput {
 //    private static final Queue<Trainee> waitingList = new LinkedList<>();
 //    //    public static final Logger logger = LogManager.getLogger(testOutput.class);

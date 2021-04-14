@@ -9,4 +9,18 @@ public enum CentreTypes {
         Random random = new Random();
         return values()[random.nextInt(values().length)];
     }
+
+    public static String getBootCampType() {
+        return String.valueOf(BOOTCAMP);
+    }
+
+    public static String getTrainingHubType() {
+        return String.valueOf(TRAINING_HUB);
+    }
+
+    public static String getTechCentreType() {
+        return String.valueOf(TECH_CENTRE);
+    }
+
+
 }

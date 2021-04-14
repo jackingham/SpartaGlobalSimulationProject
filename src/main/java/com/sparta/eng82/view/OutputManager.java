@@ -13,8 +13,8 @@ public class OutputManager implements Output {
 
 
     public OutputManager(ArrayList<TrainingCentre> listOfCentres, Queue waitingList) {
-        this.listOfCentres = listOfCentres;
-        this.waitingList = waitingList;
+        OutputManager.listOfCentres = listOfCentres;
+        OutputManager.waitingList = waitingList;
     }
 
 

@@ -6,7 +6,7 @@ public class Bootcamp extends TrainingCentre {
     private static final int maximumCapacity = 500;
     private int numberOfMonthsBelowRequiredAttendance = 0;
 
-    public Bootcamp(){
+    public Bootcamp() {
         super(CentreTypes.BOOTCAMP);
     }
 

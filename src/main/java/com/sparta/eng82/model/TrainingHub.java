@@ -1,10 +1,10 @@
 package com.sparta.eng82.model;
 
-public class TrainingHub extends TrainingCentre{
+public class TrainingHub extends TrainingCentre {
 
     private static final int maximumCapacity = 200;
 
-    public TrainingHub(){
+    public TrainingHub() {
         super(CentreTypes.TRAINING_HUB);
     }
 
