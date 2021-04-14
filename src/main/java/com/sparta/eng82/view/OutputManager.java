@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Queue;
 
 public class OutputManager implements Output {
-
+    //    private
     private List<TrainingCentre> listOfCentres;
     private List<Trainee> listOfTrainee;
     private Queue waitingList;
