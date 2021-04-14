@@ -1,4 +1,4 @@
-# Sparta Global Simulation Project
+<h1 align="center">Sparta Global Simulation Project <img alt="Project Sparta Badge" src="https://img.shields.io/badge/project-sparta-%23e43560?label=project&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAMAAADW3miqAAABZVBMVEVAIFHkNWBBH1FDHlHiNmBBH1LON2DlNWBcHVH+/v////3FNmFAHlRAG08/H1A+IFFhIU5BHlL9/fxBH05EHVL///xAHlH9//3//v3Y0dnjNl9LLFhCHVRDG08+IU79//v7//vMwtD4+Pi8scF6ZITjNmLfOF5BI1JDHU/28/ZuV3pGKFZEI1FnH08/HU339veDbI7kNV7iN11NHlE/HEv//////P/7/PrVOGPdN2JiIVE8IVFAHU8/H05UHk1AGU1HHUxNHEy8scCklamjk6iCa4p3YYDRNmbKNmLHNmHBNWHnNGCvMGBTH1NAHFHy7PLt6e/Vy9iwpLWwpLSoma6jkKaXf5t6ZoFvVnpgRG1hS2lYPWW1M11NMFqMLViLJ1iVLFd2KVd7JVR2IFOHKFJeIVFaH009GUjg2ePDuMfAucKzqLqxpbiQeZeMe5HaOGTQN2CqNGCmLF+dLFuEKllJJ1lGKFVpXQQhAAACNUlEQVR42qXQhXajWACAYZyQwmVxSrwtbNzdU7fU3X3c5fmHCHMgDcfmj4ePa9A4XBQ50GBxZzQqAMgW28BpWkYccVwwaDdCMNAreP5zVk+l+rg1CBREAu3HH1cbxKvuWQuJXPdhu2pgGAaT9raw2r1sTdUo3H3F8vkBckRqa3VujJDuXS2XN4xXKKdt9v0jIqI/q8NRdFjXHEjb2i4MEYLLL5ukhuVIUqutrc842rgRhmeA0umn2haskXr16inlcdYu0NCgKN3b1nUsp63dtqMcJ3P0IM7vH3ywAB+OJID2DGZmfO+x/mbw/1HJZBKxH7X8vG4avfoIgLD6YX7Y4uL8SsuOkDqBma0/s+nzt4p3FFVaTkO2xBSBGXltwyMzCxmFokIURalh5diO2EaKMIwcOeMBzMKceZ2vVCp8hT8u2geS6wQJY/oIlVV+cSU76BzYR/L3b75tEl/GKMSfvOl00szODm5HEN7tvaQebgt/UbFYZBgOmghncdBtQaPpIstLS0vLK78mFEv7ab/IscOFU6okSd5S7FNrAiFRVAAox6xmeIoKK4qi8uF3SWhq4HJWMg+yVPKGKG8kMd1ArfjRweHB4ftM2BUFg/5mOtpsFi/2XBBiJiAM0wkEOu4IRdHodXzQ2edddyQyq7uxQRmeHyB5OjrNhFRVCYVUhQ9HfkMuaC4kDfMq/JHggs72Z8ftf7wE0xcuJH1W18kdfPoRQLIcDZhFAyjOOc3kgIMQd/Fv6A8ksVwk6PNPnQAAAABJRU5ErkJggg==" /> </h1>
 
 A Java group project completed during Sparta Global training.
 
@@ -7,11 +7,11 @@ A Java group project completed during Sparta Global training.
 An agile Java group project completed during training. The software is required to run a simulation of Sparta Global taking in trainees whilst opening centres. The focus of this project is to introduce the group to agile in practice, specifically SCRUM with use of GitHub's project ticket system. 
 
 ## Table of Contents
-1. [Sprint 0](#sprint0)
-2. [Sprint 1](#sprint1)
-3. [Sprint 2](#sprint2)
+1. [:small_blue_diamond: Sprint 0](#sprint0)
+2. [:small_blue_diamond: Sprint 1](#sprint1)
+3. [:small_blue_diamond: Sprint 2](#sprint2)
 
-## Sprint 0 <a name="sprint0"></a>
+## :small_blue_diamond: Sprint 0 <a name="sprint0"></a>
 
 ### Our Team
 
@@ -26,7 +26,7 @@ Every member is a developer and a tester.
 **Patrick Walsh**
 **Abdul Makba**
 
-### Our Definition of Done &#x2611;
+### Our Definition of Done :heavy_check_mark:
 
 1. Code is peer-reviewed.
 2. Code is checked in.
@@ -65,7 +65,7 @@ This project uses a MVC design pattern.
 
 After relevant planning and user stories generation, the product owner had a meeting with the whole team. At this stage the product owner had the opportunity to assess if all requirements had been covered in the user stories created by the team. Once satisfied, the team had the all clear to start working on the project in Sprint 1.
 
-## Sprint 1 <a name="sprint1"></a>
+## :small_blue_diamond: Sprint 1 <a name="sprint1"></a>
 
 ### The Requirements
 
@@ -127,14 +127,14 @@ After an initial attempt, the product had not been fully completed to the produc
 
 ### Sprint Retrospective
 
-#### Continue
+#### :white_check_mark: Continue
 > Delivering the consistent hard work from all in the group. - *Patrick*
 
 > To collaborate and execute on tasks. - *Teniola* 
 
 > To work collaboratively using pair programming. - *Golam*
 
-#### Start
+#### :sparkle: Start
 
 > Integrating different areas of the program together to ensure everyone is aware of the program’s functionality. - *Patrick*
 
@@ -155,14 +155,14 @@ After an initial attempt, the product had not been fully completed to the produc
 > To determine timings much more in advance, to mitigate any timing issues. - *Golam*
 
 
-#### Stop
+#### :negative_squared_cross_mark: Stop 
 > Interruptions during solution explanations. - *Patrick*
 
 > Making changes without consensus. *Teniola*
 
 > Losing time on a task which doesn't involve the whole group. - *Jakub*
 
-## Sprint 2 <a name="sprint2"></a>
+## :small_blue_diamond: Sprint 2 <a name="sprint2"></a>
 
 ### The Requirements
 
