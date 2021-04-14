@@ -1,17 +1,18 @@
 package com.sparta.eng82.view;
 
+import com.sparta.eng82.model.Trainee;
 import com.sparta.eng82.model.TrainingCentre;
 
-import java.util.List;
+import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Queue;
 
 public class OutputManager implements Output {
-    //    private
-    private List<TrainingCentre> listOfCentres;
-    private Queue waitingList;
+    public static ArrayList<TrainingCentre> listOfCentres = new ArrayList<>();
+    private static Queue<Trainee> waitingList = new LinkedList<>();
 
 
-    public OutputManager(List<TrainingCentre> listOfCentres, Queue waitingList) {
+    public OutputManager(ArrayList<TrainingCentre> listOfCentres, Queue waitingList) {
         this.listOfCentres = listOfCentres;
         this.waitingList = waitingList;
     }
@@ -35,24 +36,21 @@ public class OutputManager implements Output {
 
     @Override
     public int numberOfFullCentres() {
-        int fullCentres = 0;
-        for (TrainingCentre fullCentre : listOfCentres) {
-            if (!fullCentre.isOpen()) {
-                fullCentres++;
-            }
-        }
-        return fullCentres;
+//        int fullCentres = 0;
+//        for (TrainingCentre fullCentre : listOfCentres) {
+//            if (!fullCentre.isOpen()) {
+//                fullCentres++;
+//            }
+//        }
+//        return fullCentres;
+        return numberOfCentres() - numberOfOpenCentres();
     }
 
     @Override
     public int numberOfTraineesInTraining() {
         int traineesTraining = 0;
-        for (TrainingCentre trainingCentre : listOfCentres) {
-            if (trainingCentre.getTraineeArraySize() != 0) {
-                traineesTraining += trainingCentre.getTraineeArraySize();
-                System.out.println(trainingCentre.getTraineeArraySize());
-                break;
-            }
+        for (TrainingCentre numberOfTrainees : listOfCentres) {
+            traineesTraining += numberOfTrainees.getTraineeArraySize();
         }
         return traineesTraining;
     }
@@ -64,14 +62,12 @@ public class OutputManager implements Output {
 
     @Override
     public void summary() {
-        System.out.println("\nTraining Centres:" +
-                "\n\tOpen: " + numberOfCentres() +
-                "\n\tFull: " + numberOfOpenCentres() +
-                "\n\tClosed: " + numberOfFullCentres() +
+        System.out.println("\nTraining Centres: " +
+                "\n\tOpen: " + numberOfOpenCentres() +
+                "\n\tFull: " + numberOfFullCentres() +
                 "\nTrainees: " +
                 "\n\tIn Training: " + numberOfTraineesInTraining() +
-                "\n\tIn Waiting: " + numberOfTraineesInWaiting());
+                "\n\tIn Waiting: " + numberOfTraineesInWaiting()
+        );
     }
-
-
 }
