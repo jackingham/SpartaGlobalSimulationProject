@@ -4,11 +4,13 @@ public class Trainee {
     private final int id;
     private final int joinMonth;
     private static int idIncrementor = 0;
+    private final String courseName;
 
 
     public Trainee(int joinMonth) {
         this.joinMonth = joinMonth;
         id = idIncrementor++;
+        this.courseName = randomlyPickCourse();
     }
 
     public int getId() {
