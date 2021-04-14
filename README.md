@@ -89,7 +89,7 @@ As a user, I want to be able to input either months, years or a combination of b
 ## Epic 3
 As a user, I want to simulate trainee acquisition so I can predict influx and possible upcoming business decisions.
 
-### Solution Summary - *Alasdair Malcolm*
+#### Solution Summary - *Alasdair Malcolm*
 
 > There is a InputValidator class which contains two methods, getUserInput() and verifyInteger().
 
