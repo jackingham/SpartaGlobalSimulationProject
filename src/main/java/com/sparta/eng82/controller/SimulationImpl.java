@@ -28,21 +28,54 @@ public class SimulationImpl implements Simulation {
 
     @Override
     public TrainingCentre generateTrainingCentre() {
-        CentreTypes newCentreType  = CentreTypes.getRandomCentreType();
-        switch (newCentreType) {
-            case BOOTCAMP:
-                return new Bootcamp();
-            case TECH_CENTRE:
-                return new TechCentre();
-            case TRAINING_HUB:
-                return new TrainingHub();
-            default:
-                return null;
+        while(true){
+            CentreTypes newCentreType = CentreTypes.getRandomCentreType();
+            switch (newCentreType) {
+                case BOOTCAMP:
+                    if(Bootcamp.getLifetimeNumberOfBootcamps() < 2) {
+                        Bootcamp.incrementLifetimeNumberOfBootcamps();
+                        return new Bootcamp();
+                    }
+                case TECH_CENTRE:
+                    return new TechCentre();
+                case TRAINING_HUB:
+                    return new TrainingHub();
+                default:
+                    return null;
+            }
         }
     }
 
     @Override
-    public void startSimulation(int numberOfMonths) {
+    public void startSimulation(int numberOfMonths, boolean outputEveryMonth) {
+        if (outputEveryMonth) {
+            while (month <= numberOfMonths) {
+                if (month != 0) {
+                    waitingList.addAll(generateTrainees(randomGenerator.randomInt(20, 31)));
+
+                    if (month % 2 == 0) {
+                        trainingCentres.add(generateTrainingCentre());
+                    }
+
+                    for (TrainingCentre centre : trainingCentres) {
+                        if (centre.getTraineeArraySize() < 100) {
+                            int traineeIntake = randomGenerator.randomInt(0, 21);
+                            if (traineeIntake < 100 - centre.getTraineeArraySize()) {
+                                for (int i = 0; i < traineeIntake; i++) {
+                                    centre.addTraineeToCentre(waitingList.poll());
+                                }
+                            } else {
+                                for (int j = 0; j < 100 - centre.getTraineeArraySize(); j++) {
+                                    centre.addTraineeToCentre(waitingList.poll());
+                                }
+                            }
+                        }
+                    }
+                }
+                generateOutput();
+                month++;
+            }
+        }
         while (month <= numberOfMonths) {
             if (month != 0) {
                 waitingList.addAll(generateTrainees(randomGenerator.randomInt(20, 31)));
@@ -83,7 +116,7 @@ public class SimulationImpl implements Simulation {
         return month;
     }
 
-    public void generateOutput(){
+    public void generateOutput() {
         OutputManager outputManager = new OutputManager(getTrainingCentres(), getWaitingList());
         outputManager.summary();
     }
