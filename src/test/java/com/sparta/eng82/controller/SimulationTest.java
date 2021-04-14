@@ -28,19 +28,19 @@ class SimulationTest {
 
     @Test
     void stateMonthTest() {
-        sim.startSimulation(10);
+        sim.startSimulation(10, false);
         assertEquals(11, sim.getMonth());
     }
 
     @Test
     void traineeCentreState() {
-        sim.startSimulation(10);
+        sim.startSimulation(10, false);
         assertEquals(3, sim.getTrainingCentres().get(3).getId());
     }
 
     @Test
     void waitingListState() {
-        sim.startSimulation(10);
+        sim.startSimulation(10, false);
         Trainee tempTrainee = new Trainee(1);
         assertEquals(tempTrainee.getClass().getTypeName(), sim.getWaitingList().peek().getClass().getTypeName());
     }

@@ -28,16 +28,22 @@ public class SimulationImpl implements Simulation {
 
     @Override
     public TrainingCentre generateTrainingCentre() {
-        CentreTypes newCentreType = CentreTypes.getRandomCentreType();
-        switch (newCentreType) {
-            case BOOTCAMP:
-                return new Bootcamp();
-            case TECH_CENTRE:
-                return new TechCentre();
-            case TRAINING_HUB:
-                return new TrainingHub();
-            default:
-                return null;
+        while(true){
+            CentreTypes newCentreType = CentreTypes.getRandomCentreType();
+            switch (newCentreType) {
+                case BOOTCAMP:
+                    if(Bootcamp.getLifetimeNumberOfBootcamps() < 2) {
+                        Bootcamp.incrementLifetimeNumberOfBootcamps();
+                        return new Bootcamp();
+                    }
+                case TECH_CENTRE:
+                    return new TechCentre();
+                case TRAINING_HUB:
+                    return new TrainingHub();
+                default:
+                    return null;
+            }
+
         }
     }
 
