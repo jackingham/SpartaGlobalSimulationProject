@@ -5,10 +5,10 @@ import java.util.ArrayList;
 public class TrainingCentre {
 
     private static int idIncrementor = 0;
+    private static int numberOfCentreType;
     private final int id;
     private final ArrayList<Trainee> traineeArray = new ArrayList<>();
     private int traineeCapcity;
-    private static int numberOfCentreType;
 
     public TrainingCentre(CentreTypes ct) {
 
@@ -36,5 +36,7 @@ public class TrainingCentre {
         return traineeArray;
     }
 
-    public void checkIfShouldClose(){};
+    public void checkIfShouldClose() {
+    }
+
 }

@@ -11,5 +11,5 @@ public interface Output {
 
     int numberOfTraineesInWaiting();
 
-    void  summary();
+    void summary();
 }

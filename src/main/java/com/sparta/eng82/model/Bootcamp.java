@@ -4,7 +4,7 @@ public class Bootcamp extends TrainingCentre {
 
     private static final int capacity = 500;
 
-    public Bootcamp(){
+    public Bootcamp() {
         super(CentreTypes.BOOTCAMP);
     }
 

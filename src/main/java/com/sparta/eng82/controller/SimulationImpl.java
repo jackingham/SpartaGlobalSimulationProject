@@ -1,7 +1,6 @@
 package com.sparta.eng82.controller;
 
-import com.sparta.eng82.model.Trainee;
-import com.sparta.eng82.model.TrainingCentre;
+import com.sparta.eng82.model.*;
 import com.sparta.eng82.utilities.RandomGeneratorImpl;
 import com.sparta.eng82.view.OutputManager;
 
@@ -29,7 +28,7 @@ public class SimulationImpl implements Simulation {
 
     @Override
     public TrainingCentre generateTrainingCentre() {
-        CentreTypes newCentreType  = CentreTypes.getRandomCentreType();
+        CentreTypes newCentreType = CentreTypes.getRandomCentreType();
         switch (newCentreType) {
             case BOOTCAMP:
                 return new Bootcamp();
@@ -44,7 +43,7 @@ public class SimulationImpl implements Simulation {
 
     @Override
     public void startSimulation(int numberOfMonths, boolean outputEveryMonth) {
-        if (outputEveryMonth){
+        if (outputEveryMonth) {
             while (month <= numberOfMonths) {
                 if (month != 0) {
                     waitingList.addAll(generateTrainees(randomGenerator.randomInt(20, 31)));
@@ -112,7 +111,7 @@ public class SimulationImpl implements Simulation {
         return month;
     }
 
-    public void generateOutput(){
+    public void generateOutput() {
         OutputManager outputManager = new OutputManager(getTrainingCentres(), getWaitingList());
         outputManager.summary();
     }

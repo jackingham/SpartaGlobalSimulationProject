@@ -11,7 +11,7 @@ public class CentreManager {
     public static void closeCentre(List<TrainingCentre> centres) {
         /*TrainingCentre centreWithSpace1;
         TrainingCentre centreWithSpace2;*/
-        for (TrainingCentre centre: centres) {
+        for (TrainingCentre centre : centres) {
             int numberOfTrainees = centre.getTraineeArraySize();
             if (numberOfTrainees <= 10) {
                 if (centre.centreType() == Bootcamp) {

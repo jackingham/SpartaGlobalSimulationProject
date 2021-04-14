@@ -52,7 +52,7 @@ public class InputValidator {
     public static String verifyTimeframe() {
         System.out.println("choose Y, M or YM");
         String chosenTime = (scanner.nextLine()).toLowerCase();
-        while (!(chosenTime.equalsIgnoreCase("y") || chosenTime.equalsIgnoreCase("m") || chosenTime.equalsIgnoreCase("my") || chosenTime.equalsIgnoreCase("ym"))){
+        while (!(chosenTime.equalsIgnoreCase("y") || chosenTime.equalsIgnoreCase("m") || chosenTime.equalsIgnoreCase("my") || chosenTime.equalsIgnoreCase("ym"))) {
             System.out.println("try again, please choose Y, M or YM");
             chosenTime = (scanner.nextLine()).toLowerCase();
         }
