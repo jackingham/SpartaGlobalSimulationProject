@@ -60,11 +60,11 @@ public class testOutput {
         Assertions.assertEquals(1, outputManager.numberOfTraineesInWaiting());
     }
 
-    @Test
-    @DisplayName("Test for the output of summarised outputs")
-    public void shouldReturnSummaryOfOutputs() {
-
-
-        Assertions.assertEquals(1, outputManager.summary());
-    }
+//    @Test
+//    @DisplayName("Test for the output of summarised outputs")
+//    public void shouldReturnSummaryOfOutputs() {
+//
+//
+//        Assertions.assertEquals(1, outputManager.summary());
+//    }
 }

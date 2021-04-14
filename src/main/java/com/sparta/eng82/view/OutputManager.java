@@ -1,7 +1,11 @@
 package com.sparta.eng82.view;
 
-import com.sparta.eng82.model.TrainingCentre;
 
+import com.sparta.eng82.model.TrainingCentre;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Queue;
 
@@ -9,6 +13,7 @@ public class OutputManager implements Output {
     //    private
     private List<TrainingCentre> listOfCentres;
     private Queue waitingList;
+    public static final Logger logger = LogManager.getLogger(OutputManager.class);
 
 
     public OutputManager(List<TrainingCentre> listOfCentres, Queue waitingList) {
@@ -62,16 +67,19 @@ public class OutputManager implements Output {
         return waitingList.size();
     }
 
-    @Override
-    public String summary() {
-        return "\nTraining Centres:" +
-                "\n\tOpen: " + numberOfCentres() +
+
+
+    public void generateOutput(){
+        System.out.println("\nTraining Centres:" +
+                "\n\tOpen: " + numberOfCentres()+
                 "\n\tFull: " + numberOfOpenCentres() +
-                "\n\tClosed: " + numberOfFullCentres() +
+                "\n\tClosed: " + numberOfFullCentres()+
                 "\nTrainees: " +
-                "\n\tIn Training: " + numberOfTraineesInTraining() +
-                "\n\tIn Waiting: " + numberOfTraineesInWaiting();
+                "\n\tIn Training: " + numberOfTraineesInTraining()+
+                "\n\tIn Waiting: " + numberOfTraineesInWaiting());
+
     }
+
 
 
 }

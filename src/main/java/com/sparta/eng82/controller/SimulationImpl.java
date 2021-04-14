@@ -3,6 +3,7 @@ package com.sparta.eng82.controller;
 import com.sparta.eng82.model.Trainee;
 import com.sparta.eng82.model.TrainingCentre;
 import com.sparta.eng82.utilities.RandomGeneratorImpl;
+import com.sparta.eng82.view.OutputManager;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -59,6 +60,7 @@ public class SimulationImpl implements Simulation {
 
             month++;
         }
+        generateOutput();
     }
 
     public Queue<Trainee> getWaitingList() {
@@ -71,6 +73,11 @@ public class SimulationImpl implements Simulation {
 
     public int getMonth() {
         return month;
+    }
+
+    public void generateOutput() {
+        OutputManager outputManager = new OutputManager(trainingCentres, waitingList);
+        outputManager.generateOutput();
     }
 
 
