@@ -1,5 +1,7 @@
 # Sparta Global Simulation Project
 
+A Java group project completed during Sparta Global training.
+
 ## About
 
 Java 11 group project completed during training. The software is required to run a simulation of Sparta Global taking in trainees whilst opening centres. The main focus of this project is to introduce the group to agile in practice, specifically SCRUM with use of GitHub's project ticket system. 
