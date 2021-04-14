@@ -64,7 +64,7 @@ At the end of the simulation, output should show:
   - Number of trainees currently training
   - Number of trainees on the waiting list
 
-#### Requirements to Epics
+## Requirements to Epics
 
 ## Epic 1
 As a user, I want to track training consistently so that i can review the centres and trainees over a period of time in a console or file output.
@@ -79,11 +79,11 @@ As a user, I want to be able to input either months, years or a combination of b
 #### Solution Summary - *Golam Choudhury*
 
 > There is a InputValidator class which contains two methods, getUserInput() and verifyInteger().
-
+>
 > getUserInput() simply asks the user what type of timeframe they will like to use (a choice of months, years or months&years).
 > After the user inputs their choice, they then input the amount of time they wants elapsed within the simulation, this must be an
 > integer, any other data type will promt the user to retry their input. 
-
+>
 > The verifyInteger() method checks the inputted time (e.g. 5 months), if this input is not an integer, the message: "That's not a number" is printed back to the user > and the user will be re-promted to input an integer. 
 
 ## Epic 3
@@ -91,10 +91,8 @@ As a user, I want to simulate trainee acquisition so I can predict influx and po
 
 #### Solution Summary - *Alasdair Malcolm*
 
-> There is a InputValidator class which contains two methods, getUserInput() and verifyInteger().
-
-> getUserInput() simply asks the user what type of timeframe they will like to use (a choice of months, years or months&years).
-> After the user inputs their choice, they then input the amount of time they wants elapsed within the simulation, this must be an
-> integer, any other data type will promt the user to retry their input. 
-
-> The verifyInteger() method checks the inputted time (e.g. 5 months), if this input is not an integer, the message: "That's not a number" is printed back to the user  > and the user will be re-promted to input an integer. 
+> Firstly we designed the 2 neccesary Interfaces to give a uniformity to the project, then created several unit tests for the expected scenarios drawn from the > interfaces.
+>
+> After that was all completed and merged back to the group project, we implamented our 2 classes "Random Generator" and "SimulationImpl". These allowed for repeated > use of a random integer generator and the actual running simulation.
+>
+> The simulation implamented a main loop, which would run for the input value of months and perform the requirements; generating trainees, generating centers and > populating both the centers and waiting list.
