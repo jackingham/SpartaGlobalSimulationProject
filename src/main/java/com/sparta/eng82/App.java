@@ -4,9 +4,12 @@ import com.sparta.eng82.controller.SimulationImpl;
 import com.sparta.eng82.utilities.InputValidator;
 
 public class App {
-
     public static void main(String[] args) {
         SimulationImpl simulation = new SimulationImpl();
         simulation.startSimulation(InputValidator.getUserInput());
+
+        //System.out.println(chooseTime());
+
     }
+
 }

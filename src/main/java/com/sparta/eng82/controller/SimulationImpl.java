@@ -57,7 +57,6 @@ public class SimulationImpl implements Simulation {
                     }
                 }
             }
-
             month++;
         }
         generateOutput();
