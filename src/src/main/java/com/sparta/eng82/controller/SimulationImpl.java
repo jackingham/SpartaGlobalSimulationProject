@@ -3,7 +3,6 @@ package com.sparta.eng82.controller;
 import com.sparta.eng82.model.Trainee;
 import com.sparta.eng82.model.TrainingCentre;
 import com.sparta.eng82.utilities.RandomGeneratorImpl;
-import com.sparta.eng82.view.Output;
 import com.sparta.eng82.view.OutputManager;
 
 import java.util.ArrayList;
@@ -76,9 +75,9 @@ public class SimulationImpl implements Simulation {
         return month;
     }
 
-    public void generateOutput(){
+    public void generateOutput() {
         OutputManager outputManager = new OutputManager(trainingCentres, waitingList);
-        outputManager.summary();
+        outputManager.generateOutput();
     }
 
 

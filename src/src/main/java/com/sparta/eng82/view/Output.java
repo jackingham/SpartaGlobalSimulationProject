@@ -10,6 +10,4 @@ public interface Output {
     int numberOfTraineesInTraining();
 
     int numberOfTraineesInWaiting();
-
-    void summary();
 }
