@@ -7,20 +7,15 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.PriorityQueue;
+import java.util.LinkedList;
 import java.util.Queue;
 
 public class testOutput {
-    private static final Queue<Trainee> waitingList = new PriorityQueue<>();
+    private static final Queue<Trainee> waitingList = new LinkedList<>();
     //    public static final Logger logger = LogManager.getLogger(testOutput.class);
     TrainingCentre trainingCentre = new TrainingCentre();
-    TrainingCentre trainingCentre1 = new TrainingCentre();
-    TrainingCentre trainingCentre2 = new TrainingCentre();
-    TrainingCentre trainingCentre3 = new TrainingCentre();
     Trainee trainee = new Trainee(1);
-    List<TrainingCentre> listOfCentres = new ArrayList<>();
-    List<Trainee> listOfTrainee = new ArrayList<>();
+    ArrayList<TrainingCentre> listOfCentres = new ArrayList<>();
     OutputManager outputManager = new OutputManager(listOfCentres, waitingList);
 
 
