@@ -8,7 +8,9 @@ import java.util.Map;
 
 public class OutputManager {
 
-    public void generateReport(SimulationImpl simulation) {
+    public void generateReport(SimulationImpl simulation, int month) {
+        System.out.println("\n##### Month: " + month + " #####");
+
         OutputManager outputManager = new OutputManager();
         // number of open centres
         System.out.println("-- Number of Open Centres per Type --");
@@ -64,7 +66,8 @@ public class OutputManager {
         }
     }
 
-    private HashMap<String, Integer> getNumberOfOpenCentres() {
+    //TODO make Private!
+    public HashMap<String, Integer> getNumberOfOpenCentres() {
 
         int totalTech = 0;
         int totalBootcamp = 0;
