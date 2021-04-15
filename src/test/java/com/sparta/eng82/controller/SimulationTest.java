@@ -23,19 +23,13 @@ class SimulationTest {
 
     @Test
     void generateTrainingCentreTest() {
-        assertEquals(TrainingCentre.class.getTypeName(), sim.generateTrainingCentre().getClass().getTypeName());
+        assertEquals(TrainingCentre.class.getSimpleName(), sim.generateTrainingCentre().get(0).getClass().getSuperclass().getSimpleName());
     }
 
     @Test
     void stateMonthTest() {
         sim.startSimulation(10, false);
         assertEquals(11, sim.getMonth());
-    }
-
-    @Test
-    void traineeCentreState() {
-        sim.startSimulation(10, false);
-        assertEquals(3, sim.getTrainingCentres().get(3).getId());
     }
 
     @Test
