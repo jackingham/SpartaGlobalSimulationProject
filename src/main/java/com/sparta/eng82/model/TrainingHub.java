@@ -13,11 +13,6 @@ public class TrainingHub extends TrainingCentre {
         return MAXIMUMCAPACITY;
     }
 
-    @Override
-    public void checkIfShouldClose() {
-        super.checkIfShouldClose();
-    }
-
     public boolean full() {
         return getTraineeArray().size() == getMaximumCapacity();
     }

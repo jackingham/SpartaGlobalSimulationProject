@@ -20,14 +20,14 @@ public class CentreManager {
 
                         displacedTrainees.addAll(centre.getTraineeArray()); // if true, removes students and adds them to an internal waiting list
                         centre.removeAllTrainees();
-                        centre.setOpenStatus(false); // closes the centre
+                        centre.setFunctionStatus(false); // closes the centre
                     } else {
                         ((Bootcamp) centre).incrementNumberOfMonthsBelowRequiredAttendance(); // if less than 3 months of low attendance, increments by one month
                     }
                 } else {
                     displacedTrainees.addAll(centre.getTraineeArray()); // if not bootcamp remove students and add to internal waiting list
                     centre.removeAllTrainees();
-                    centre.setOpenStatus(false); // closes the centre
+                    centre.setFunctionStatus(false); // closes the centre
                 }
             } else if (centreWithSpace == null) { // checks if receiving centre is "null"
                 centreWithSpace = centre; // current centre becomes available for intake

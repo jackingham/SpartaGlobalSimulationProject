@@ -16,8 +16,8 @@ public class SimulationImpl implements Simulation {
     private final TechCentre techCentre = new TechCentre();
     private final Bootcamp bootcamp = new Bootcamp();
     private final TrainingHub trainingHub = new TrainingHub();
-    CentreManager centreManager = new CentreManager();
-    OutputManager outputManager = new OutputManager();
+    private final CentreManager centreManager = new CentreManager();
+    private final OutputManager outputManager = new OutputManager();
 
     @Override
     public ArrayList<Trainee> generateTrainees(int numberOfTrainees) {
@@ -88,19 +88,22 @@ public class SimulationImpl implements Simulation {
                 }
 
                 for (TrainingCentre centre : trainingCentres) {
-//                    System.out.println(centre.getClass().getTypeName());
+//                    System.out.println("1: " + centre.getClass().getTypeName());
                     if (centre.getClass().getTypeName().equals(bootcamp.getClass().getTypeName())) {
-//                        System.out.println(centre.getTraineeArraySize());
+//                        System.out.println("2: " + centre.getTraineeArraySize());
                         if (centre.getTraineeArraySize() < Bootcamp.getMaximumCapacity()) {
                             int traineeIntake = randomGenerator.randomInt(0, 21);
-//                            System.out.println(traineeIntake + " / " + (Bootcamp.getMaximumCapacity() - centre.getTraineeArraySize()));
+//                            System.out.println("3: " + traineeIntake + " / " + (Bootcamp.getMaximumCapacity() - centre.getTraineeArraySize()));
                             if (traineeIntake < Bootcamp.getMaximumCapacity() - centre.getTraineeArraySize()) {
                                 for (int i = 0; i < traineeIntake; i++) {
                                     centre.addTraineeToCentre(waitingList.poll());
                                 }
-                            } else {
+                            }
+                            else {
+//                                System.out.println("4: " + traineeIntake + " / " + (Bootcamp.getMaximumCapacity() - centre.getTraineeArraySize()));
                                 for (int j = 0; j < Bootcamp.getMaximumCapacity() - centre.getTraineeArraySize(); j++) {
                                     centre.addTraineeToCentre(waitingList.poll());
+//                                    System.out.println("5: " + j);
                                 }
                             }
                         }
@@ -168,21 +171,19 @@ public class SimulationImpl implements Simulation {
             }
             month++;
         }
+
+        for(TrainingCentre tc : trainingCentres){
+            if(tc.getClass().getTypeName().equals(bootcamp.getClass().getTypeName())){
+                System.out.println(tc.getClass().getTypeName());
+                System.out.println(((Bootcamp)tc).isOpenStatus());
+                System.out.println(tc.getTraineeArraySize());
+            }
+        }
+
         if (!outputEveryMonth) {
             OutputManager outputManager = new OutputManager();
             outputManager.generateReport(this, month);
         }
-
-//        for(TrainingCentre tc : trainingCentres){
-//            if(tc.getClass().getTypeName().equals(bootcamp.getClass().getTypeName())){
-//                System.out.println(tc.getClass().getTypeName());
-//                System.out.println(((Bootcamp)tc).isOpenStatus());
-//                System.out.println(tc.getTraineeArraySize());
-//            }
-//        }
-
-
-
     }
 
 

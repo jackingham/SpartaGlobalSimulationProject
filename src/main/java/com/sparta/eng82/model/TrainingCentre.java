@@ -9,7 +9,8 @@ public class TrainingCentre {
     private final int id;
     private final ArrayList<Trainee> traineeArray = new ArrayList<>();
 
-    private boolean openStatus = true;
+    private boolean openStatus = true;      // Whether we are accepting new trainees.
+    private boolean functionStatus = true;  // Whether we are closed for good.
 
     public TrainingCentre(CentreTypes ct) {
 
@@ -33,9 +34,6 @@ public class TrainingCentre {
         return traineeArray;
     }
 
-    public void checkIfShouldClose() {
-    }
-
     public boolean isOpenStatus() {
         return openStatus;
     }
@@ -46,5 +44,13 @@ public class TrainingCentre {
 
     public void removeAllTrainees(){
         traineeArray.clear();
+    }
+
+    public boolean getFunctionStatus() {
+        return functionStatus;
+    }
+
+    public void setFunctionStatus(boolean functionStatus) {
+        this.functionStatus = functionStatus;
     }
 }
