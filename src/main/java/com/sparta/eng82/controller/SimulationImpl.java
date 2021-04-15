@@ -27,19 +27,25 @@ public class SimulationImpl implements Simulation {
     }
 
     @Override
-    public TrainingCentre generateTrainingCentre() {
+    public ArrayList<TrainingCentre> generateTrainingCentre() {
+        ArrayList<TrainingCentre> tempCentreList = new ArrayList<>();
         while(true){
             CentreTypes newCentreType = CentreTypes.getRandomCentreType();
             switch (newCentreType) {
                 case BOOTCAMP:
                     if(Bootcamp.getLifetimeNumberOfBootcamps() < 2) {
                         Bootcamp.incrementLifetimeNumberOfBootcamps();
-                        return new Bootcamp();
+                        tempCentreList.add(new Bootcamp());
+                        return tempCentreList;
                     }
                 case TECH_CENTRE:
-                    return new TechCentre();
+                    tempCentreList.add(new TechCentre());
+                    return tempCentreList;
                 case TRAINING_HUB:
-                    return new TrainingHub();
+                    for( int i = 0; i < 3; i++){
+                        tempCentreList.add(new TrainingHub());
+                    }
+                    return tempCentreList;
                 default:
                     return null;
             }
@@ -55,7 +61,7 @@ public class SimulationImpl implements Simulation {
                     waitingList.addAll(generateTrainees(randomGenerator.randomInt(20, 31)));
 
                     if (month % 2 == 0) {
-                        trainingCentres.add(generateTrainingCentre());
+                        trainingCentres.addAll(generateTrainingCentre());
                     }
 
                     for (TrainingCentre centre : trainingCentres) {
@@ -82,7 +88,7 @@ public class SimulationImpl implements Simulation {
                 waitingList.addAll(generateTrainees(randomGenerator.randomInt(20, 31)));
 
                 if (month % 2 == 0) {
-                    trainingCentres.add(generateTrainingCentre());
+                    trainingCentres.addAll(generateTrainingCentre());
                 }
 
                 for (TrainingCentre centre : trainingCentres) {

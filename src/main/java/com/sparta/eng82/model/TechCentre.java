@@ -2,9 +2,9 @@ package com.sparta.eng82.model;
 
 public class TechCentre extends TrainingCentre {
 
-    private static final int maximumCapacity = 100;
+    private static final int MAXIMUMCAPACITY = 100;
 
-    private final String centreCourseName;
+    private final CourseTypes centreCourseName;
 
     public TechCentre() {
         super(CentreTypes.TECH_CENTRE);
@@ -17,6 +17,6 @@ public class TechCentre extends TrainingCentre {
     }
 
     public static int getMaximumCapacity() {
-        return maximumCapacity;
+        return MAXIMUMCAPACITY;
     }
 }

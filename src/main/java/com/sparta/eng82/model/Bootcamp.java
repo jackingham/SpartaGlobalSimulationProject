@@ -3,7 +3,7 @@ package com.sparta.eng82.model;
 public class Bootcamp extends TrainingCentre {
 
     private static int lifetimeNumberOfBootcamps = 0;
-    private static final int maximumCapacity = 500;
+    private static final int MAXIMUMCAPACITY = 500;
     private int numberOfMonthsBelowRequiredAttendance = 0;
 
     public Bootcamp() {
@@ -36,6 +36,6 @@ public class Bootcamp extends TrainingCentre {
     }
 
     public static int getMaximumCapacity() {
-        return maximumCapacity;
+        return MAXIMUMCAPACITY;
     }
 }
