@@ -3,7 +3,7 @@ package com.sparta.eng82.controller;
 import com.sparta.eng82.model.*;
 import com.sparta.eng82.utilities.Printer;
 import com.sparta.eng82.utilities.RandomGeneratorImpl;
-import com.sparta.eng82.view.*;
+import com.sparta.eng82.view.OutputManager;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -19,6 +19,9 @@ public class SimulationImpl implements Simulation {
     private Bootcamp bootcamp = new Bootcamp();
     private TrainingHub trainingHub = new TrainingHub();
 
+    CentreManager centreManager = new CentreManager();
+
+
     @Override
     public ArrayList<Trainee> generateTrainees(int numberOfTrainees) {
         ArrayList<Trainee> tempTrainees = new ArrayList<>();
@@ -30,20 +33,20 @@ public class SimulationImpl implements Simulation {
         return tempTrainees;
     }
 
-    public Queue<Trainee> getWaitingList () {
+    public Queue<Trainee> getWaitingList() {
         return waitingList;
     }
 
-    public ArrayList<TrainingCentre> getTrainingCentres () {
+    public ArrayList<TrainingCentre> getTrainingCentres() {
         return trainingCentres;
     }
 
-    public void generateOutput () {
+    public void generateOutput() {
         OutputManager outputManager = new OutputManager(getTrainingCentres(), getWaitingList());
         outputManager.summary();
     }
 
-    public int getMonth () {
+    public int getMonth() {
         return month;
     }
 
@@ -76,15 +79,16 @@ public class SimulationImpl implements Simulation {
 
     @Override
     public void startSimulation(int numberOfMonths, boolean outputEveryMonth) {
-        int z = 0;
-        while (month <= numberOfMonths) {
-            System.out.println("Counter" + z++);
+        if (outputEveryMonth) {
+            while (month <= numberOfMonths) {
+                centreManager.closeCentre(trainingCentres);
                 if (month != 0) {
                     waitingList.addAll(generateTrainees(randomGenerator.randomInt(20, 31)));
 
                     if (month % 2 == 0) {
                         trainingCentres.addAll(generateTrainingCentre());
                     }
+
                     for (TrainingCentre centre : trainingCentres) {
                         if (centre.getClass().getTypeName().equals(bootcamp.getClass().getTypeName())) {
                             if (centre.getTraineeArraySize() < Bootcamp.getMAXIMUMCAPACITY()) {
@@ -122,13 +126,13 @@ public class SimulationImpl implements Simulation {
 
                                     Queue<Trainee> tempWaitingList = new LinkedList<>();
 
-                                    while (i < traineeIntake && j < waitingList.size()){
+                                    while (i < traineeIntake && j < waitingList.size()) {
                                         for (Trainee trainee : waitingList) {
                                             if (trainee.getCourseName().equals(courseTypes)) {
                                                 tempWaitingList.add(trainee);
                                                 i++;
                                             }
-                                            if (i == traineeIntake){
+                                            if (i == traineeIntake) {
                                                 break;
                                             }
                                         }
@@ -147,10 +151,17 @@ public class SimulationImpl implements Simulation {
                         generateOutput();
                     }
                 }
-            month++;
-        }
-        if(!outputEveryMonth) {
+                month++;
+            }
             generateOutput();
+        }
+
+
+    }
+
+    public void addDisplacedTraineesToWaitingList(ArrayList<Trainee> displacedTrainees) {
+        for (Trainee trainee : displacedTrainees) {
+            ((LinkedList) waitingList).addFirst(trainee);
         }
     }
 }
