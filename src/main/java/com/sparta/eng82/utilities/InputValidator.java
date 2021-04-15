@@ -1,5 +1,6 @@
 package com.sparta.eng82.utilities;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class InputValidator {
@@ -41,13 +42,20 @@ public class InputValidator {
 
     public static int verifyInteger() {
 
-        while (!scanner.hasNextInt() || scanner.nextInt() <= 0) {
-            System.out.println("That's not a valid number! Please pick a positive whole number");
-            scanner.next(); // this is important!
-        }
-        return scanner.nextInt();
-
+        int input = 0;
+        do {
+            System.out.println("Enter a positive whole number");
+            try {
+                input = scanner.nextInt();
+            } catch (InputMismatchException e) { // if the user enters something that is not an integer
+                System.out.println("Please only enter integers");
+                input = Integer.MIN_VALUE;
+                scanner.next(); // consume the non-int so we don't get caught in an endless loop
+            }
+        } while (input < 1);
+        return input;
     }
+
 
     public static String verifyTimeframe() {
         System.out.println("choose Y, M or YM");
@@ -58,6 +66,7 @@ public class InputValidator {
         }
         return chosenTime;
     }
+
 
 
 }
