@@ -1,14 +1,20 @@
 package com.sparta.eng82.model;
 
 public class TechCentre extends TrainingCentre {
+    public  String centreType = "TechCentre";
+    private static final int MAXIMUMCAPACITY = 200;
 
-    private static final int MAXIMUMCAPACITY = 100;
 
     private final CourseTypes centreCourseName;
+
 
     public TechCentre() {
         super(CentreTypes.TECH_CENTRE);
         this.centreCourseName = CourseTypes.getRandomCourseType();
+    }
+
+    public CourseTypes getCentreCourseName() {
+        return centreCourseName;
     }
 
     @Override
@@ -18,5 +24,9 @@ public class TechCentre extends TrainingCentre {
 
     public static int getMaximumCapacity() {
         return MAXIMUMCAPACITY;
+    }
+
+    public boolean full(){
+        return getTraineeArray().size() == getMaximumCapacity();
     }
 }

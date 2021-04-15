@@ -1,13 +1,17 @@
 package com.sparta.eng82.model;
 
 public class Bootcamp extends TrainingCentre {
-
+    public static String centreType = "Bootcamp";
     private static int lifetimeNumberOfBootcamps = 0;
     private static final int MAXIMUMCAPACITY = 500;
     private int numberOfMonthsBelowRequiredAttendance = 0;
 
     public Bootcamp() {
         super(CentreTypes.BOOTCAMP);
+    }
+
+    public static int getMAXIMUMCAPACITY() {
+        return MAXIMUMCAPACITY;
     }
 
     @Override
