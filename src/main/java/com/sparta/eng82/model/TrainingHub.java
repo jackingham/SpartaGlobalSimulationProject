@@ -17,4 +17,8 @@ public class TrainingHub extends TrainingCentre {
     public void checkIfShouldClose() {
         super.checkIfShouldClose();
     }
+
+    public boolean full() {
+        return getTraineeArray().size() == getMaximumCapacity();
+    }
 }

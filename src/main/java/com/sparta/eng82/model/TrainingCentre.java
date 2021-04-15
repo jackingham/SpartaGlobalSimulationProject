@@ -8,17 +8,13 @@ public class TrainingCentre {
     private static int numberOfCentreType;
     private final int id;
     private final ArrayList<Trainee> traineeArray = new ArrayList<>();
-    private int traineeCapcity;
+
     private boolean openStatus = true;
 
     public TrainingCentre(CentreTypes ct) {
 
         id = idIncrementor++;
 
-    }
-
-    public boolean isOpen() {
-        return traineeArray.size() < traineeCapcity;
     }
 
     public int getId() {
@@ -38,6 +34,10 @@ public class TrainingCentre {
     }
 
     public void checkIfShouldClose() {
+    }
+
+    public boolean isOpenStatus() {
+        return openStatus;
     }
 
     public void setOpenStatus(boolean openStatus) {

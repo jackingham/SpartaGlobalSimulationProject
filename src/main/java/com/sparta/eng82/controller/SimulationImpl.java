@@ -15,10 +15,10 @@ public class SimulationImpl implements Simulation {
     public static ArrayList<TrainingCentre> trainingCentres = new ArrayList<>();
     static int month = 0;
     private final RandomGeneratorImpl randomGenerator = new RandomGeneratorImpl();
+    private final TechCentre techCentre = new TechCentre();
+    private final Bootcamp bootcamp = new Bootcamp();
+    private final TrainingHub trainingHub = new TrainingHub();
     CentreManager centreManager = new CentreManager();
-    private TechCentre techCentre = new TechCentre();
-    private Bootcamp bootcamp = new Bootcamp();
-    private TrainingHub trainingHub = new TrainingHub();
 
     @Override
     public ArrayList<Trainee> generateTrainees(int numberOfTrainees) {
@@ -39,10 +39,10 @@ public class SimulationImpl implements Simulation {
         return trainingCentres;
     }
 
-    public void generateOutput() {
-        OutputManager outputManager = new OutputManager(getTrainingCentres(), getWaitingList());
-        outputManager.summary();
-    }
+//    public void generateOutput() {
+//        OutputManager outputManager = new OutputManager(getTrainingCentres(), getWaitingList());
+//        outputManager.summary();
+//    }
 
     public int getMonth() {
         return month;
@@ -77,85 +77,86 @@ public class SimulationImpl implements Simulation {
 
     @Override
     public void startSimulation(int numberOfMonths, boolean outputEveryMonth) {
-        if (outputEveryMonth) {
-            while (month <= numberOfMonths) {
-                centreManager.closeCentre(trainingCentres);
-                if (month != 0) {
-                    waitingList.addAll(generateTrainees(randomGenerator.randomInt(20, 31)));
+        while (month <= numberOfMonths) {
+            centreManager.closeCentre(trainingCentres);
+            if (month != 0) {
+                waitingList.addAll(generateTrainees(randomGenerator.randomInt(20, 31)));
 
-                    if (month % 2 == 0) {
-                        trainingCentres.addAll(generateTrainingCentre());
-                    }
+                if (month % 2 == 0) {
+                    trainingCentres.addAll(generateTrainingCentre());
+                }
 
-                    for (TrainingCentre centre : trainingCentres) {
-                        if (centre.getClass().getTypeName().equals(bootcamp.getClass().getTypeName())) {
-                            if (centre.getTraineeArraySize() < Bootcamp.getMAXIMUMCAPACITY()) {
-                                int traineeIntake = randomGenerator.randomInt(0, 21);
-                                if (traineeIntake < Bootcamp.getMAXIMUMCAPACITY() - centre.getTraineeArraySize()) {
-                                    for (int i = 0; i < traineeIntake; i++) {
-                                        centre.addTraineeToCentre(waitingList.poll());
-                                    }
-                                } else {
-                                    for (int j = 0; j < Bootcamp.getMAXIMUMCAPACITY() - centre.getTraineeArraySize(); j++) {
-                                        centre.addTraineeToCentre(waitingList.poll());
-                                    }
+                for (TrainingCentre centre : trainingCentres) {
+                    if (centre.getClass().getTypeName().equals(bootcamp.getClass().getTypeName())) {
+                        if (centre.getTraineeArraySize() < Bootcamp.getMaximumCapacity()) {
+                            int traineeIntake = randomGenerator.randomInt(0, 21);
+                            if (traineeIntake < Bootcamp.getMaximumCapacity() - centre.getTraineeArraySize()) {
+                                for (int i = 0; i < traineeIntake; i++) {
+                                    centre.addTraineeToCentre(waitingList.poll());
+                                }
+                            } else {
+                                for (int j = 0; j < Bootcamp.getMaximumCapacity() - centre.getTraineeArraySize(); j++) {
+                                    centre.addTraineeToCentre(waitingList.poll());
                                 }
                             }
-                        } else if (centre.getClass().getTypeName().equals(trainingHub.getClass().getTypeName())) {
-                            if (centre.getTraineeArraySize() < TrainingHub.getMaximumCapacity()) {
-                                int traineeIntake = randomGenerator.randomInt(0, 21);
-                                if (traineeIntake < TrainingHub.getMaximumCapacity() - centre.getTraineeArraySize()) {
-                                    for (int i = 0; i < traineeIntake; i++) {
-                                        centre.addTraineeToCentre(waitingList.poll());
-                                    }
-                                } else {
-                                    for (int j = 0; j < TrainingHub.getMaximumCapacity() - centre.getTraineeArraySize(); j++) {
-                                        centre.addTraineeToCentre(waitingList.poll());
-                                    }
-                                }
-                            }
-                        } else if (centre.getClass().getTypeName().equals(techCentre.getClass().getTypeName())) {
-                            if (!techCentre.full()) {
-                                int traineeIntake = randomGenerator.randomInt(0, 21);
-                                if (traineeIntake > 0) {
-                                    CourseTypes courseTypes = techCentre.getCentreCourseName();
-                                    int i = 0;
-                                    int j = 0;
-
-                                    Queue<Trainee> tempWaitingList = new LinkedList<>();
-
-                                    while (i < traineeIntake && j < waitingList.size()) {
-                                        for (Trainee trainee : waitingList) {
-                                            if (trainee.getCourseName().equals(courseTypes)) {
-                                                tempWaitingList.add(trainee);
-                                                i++;
-                                            }
-                                            if (i == traineeIntake) {
-                                                break;
-                                            }
-                                        }
-                                        j++;
-                                    }
-                                    //TODO - Think about this, could be computationally expensive, is there a better way to break the while loop?
-                                    waitingList.removeAll(tempWaitingList);
-                                }
-                            }
-                        } else {
-                            Printer.printMessage("Error centre type unknown");
                         }
-                    }
+                    } else if (centre.getClass().getTypeName().equals(trainingHub.getClass().getTypeName())) {
+                        if (centre.getTraineeArraySize() < TrainingHub.getMaximumCapacity()) {
+                            int traineeIntake = randomGenerator.randomInt(0, 21);
+                            if (traineeIntake < TrainingHub.getMaximumCapacity() - centre.getTraineeArraySize()) {
+                                for (int i = 0; i < traineeIntake; i++) {
+                                    centre.addTraineeToCentre(waitingList.poll());
+                                }
+                            } else {
+                                for (int j = 0; j < TrainingHub.getMaximumCapacity() - centre.getTraineeArraySize(); j++) {
+                                    centre.addTraineeToCentre(waitingList.poll());
+                                }
+                            }
+                        }
+                    } else if (centre.getClass().getTypeName().equals(techCentre.getClass().getTypeName())) {
+                        if (!techCentre.full()) {
+                            int traineeIntake = randomGenerator.randomInt(0, 21);
+                            if (traineeIntake > 0) {
+                                CourseTypes courseTypes = techCentre.getCentreCourseName();
+                                int i = 0;
+                                int j = 0;
 
-                    if (outputEveryMonth) {
-                        generateOutput();
+                                Queue<Trainee> tempWaitingList = new LinkedList<>();
+
+                                while (i < traineeIntake && j < waitingList.size()) {
+                                    for (Trainee trainee : waitingList) {
+                                        if (trainee.getCourseName().equals(courseTypes)) {
+                                            tempWaitingList.add(trainee);
+                                            i++;
+                                        }
+                                        if (i == traineeIntake) {
+                                            break;
+                                        }
+                                    }
+                                    j++;
+                                }
+                                //TODO - Think about this, could be computationally expensive, is there a better way to break the while loop?
+                                waitingList.removeAll(tempWaitingList);
+                            }
+                        }
+                    } else {
+                        Printer.printMessage("Error centre type unknown");
                     }
                 }
-                month++;
+
+                if (outputEveryMonth) {
+                    OutputManager outputManager = new OutputManager();
+                    outputManager.generateReport(this);
+                }
             }
-            generateOutput();
+            month++;
         }
-
-
+        if (!outputEveryMonth) {
+            OutputManager outputManager = new OutputManager();
+            outputManager.generateReport(this);
+        }
     }
+
 
     public void addDisplacedTraineesToWaitingList(ArrayList<Trainee> displacedTrainees) {
         for (Trainee trainee : displacedTrainees) {

@@ -10,10 +10,6 @@ public class Bootcamp extends TrainingCentre {
         super(CentreTypes.BOOTCAMP);
     }
 
-    public static int getMAXIMUMCAPACITY() {
-        return MAXIMUMCAPACITY;
-    }
-
     public static int getLifetimeNumberOfBootcamps() {
         return lifetimeNumberOfBootcamps;
     }
@@ -41,5 +37,9 @@ public class Bootcamp extends TrainingCentre {
 
     public void resetNumberOfMonthsBelowRequiredAttendance() {
         this.numberOfMonthsBelowRequiredAttendance = 0;
+    }
+
+    public boolean full() {
+        return getTraineeArray().size() == getMaximumCapacity();
     }
 }
