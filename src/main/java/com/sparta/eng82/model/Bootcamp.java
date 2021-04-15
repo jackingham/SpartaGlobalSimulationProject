@@ -42,4 +42,13 @@ public class Bootcamp extends TrainingCentre {
     public boolean full() {
         return getTraineeArray().size() == getMaximumCapacity();
     }
+
+
+    public static void setLifetimeNumberOfBootcamps(int lifetimeNumberOfBootcamps) {
+        Bootcamp.lifetimeNumberOfBootcamps = lifetimeNumberOfBootcamps;
+    }
+
+    public void setNumberOfMonthsBelowRequiredAttendance(int numberOfMonthsBelowRequiredAttendance) {
+        this.numberOfMonthsBelowRequiredAttendance = numberOfMonthsBelowRequiredAttendance;
+    }
 }
