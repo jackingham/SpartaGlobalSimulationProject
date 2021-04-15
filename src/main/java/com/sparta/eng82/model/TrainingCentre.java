@@ -9,6 +9,7 @@ public class TrainingCentre {
     private final int id;
     private final ArrayList<Trainee> traineeArray = new ArrayList<>();
     private int traineeCapcity;
+    private boolean openStatus = true;
 
     public TrainingCentre(CentreTypes ct) {
 
@@ -39,4 +40,7 @@ public class TrainingCentre {
     public void checkIfShouldClose() {
     }
 
+    public void setOpenStatus(boolean openStatus) {
+        this.openStatus = openStatus;
+    }
 }

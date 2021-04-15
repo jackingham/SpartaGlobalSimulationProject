@@ -15,6 +15,10 @@ public class SimulationImpl implements Simulation {
     static int month = 0;
     private final RandomGeneratorImpl randomGenerator = new RandomGeneratorImpl();
 
+    CentreManager centreManager = new CentreManager();
+
+
+
     @Override
     public ArrayList<Trainee> generateTrainees(int numberOfTrainees) {
         ArrayList<Trainee> tempTrainees = new ArrayList<>();
@@ -51,6 +55,7 @@ public class SimulationImpl implements Simulation {
     public void startSimulation(int numberOfMonths, boolean outputEveryMonth) {
         if (outputEveryMonth) {
             while (month <= numberOfMonths) {
+                centreManager.closeCentre(trainingCentres);
                 if (month != 0) {
                     waitingList.addAll(generateTrainees(randomGenerator.randomInt(20, 31)));
 
@@ -123,4 +128,9 @@ public class SimulationImpl implements Simulation {
     }
 
 
+    public void addDisplacedTraineesToWaitingList(ArrayList<Trainee> displacedTrainees) {
+        for (Trainee trainee: displacedTrainees) {
+            ((LinkedList)waitingList).addFirst(trainee);
+        }
+    }
 }
