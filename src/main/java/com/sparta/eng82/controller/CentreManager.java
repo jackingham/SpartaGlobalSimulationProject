@@ -12,16 +12,16 @@ public class CentreManager {
     public void closeCentre(List<TrainingCentre> centres) {
         TrainingCentre centreWithSpace = null; // a centre with space ready to take in displaced trainees
 
-        for (TrainingCentre centre: centres) { // Looping though all centres
+        for (TrainingCentre centre : centres) { // Looping though all centres
             int numberOfTrainees = centre.getTraineeArraySize(); //getting the number of trainees in the current centre
             if (numberOfTrainees <= 10) { // checking if the number of trainees is less than 10
                 if (centre.getClass().getTypeName().equals("Bootcamp")) { // checks if the current centre is a bootcamp
-                    if (((Bootcamp)centre).getNumberOfMonthsBelowRequiredAttendance() == 3) { // checks if bootcamp has been active with low attendance for 3 months
+                    if (((Bootcamp) centre).getNumberOfMonthsBelowRequiredAttendance() == 3) { // checks if bootcamp has been active with low attendance for 3 months
 
                         displacedTrainees.addAll(centre.getTraineeArray()); // if true, removes students and adds them to an internal waiting list
                         centre.setOpenStatus(false); // closes the centre
                     } else {
-                        ((Bootcamp)centre).incrementNumberOfMonthsBelowRequiredAttendance(); // if less than 3 months of low attendance, increments by one month
+                        ((Bootcamp) centre).incrementNumberOfMonthsBelowRequiredAttendance(); // if less than 3 months of low attendance, increments by one month
                     }
                 } else {
                     displacedTrainees.addAll(centre.getTraineeArray()); // if not bootcamp remove students and add to internal waiting list

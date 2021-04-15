@@ -15,12 +15,10 @@ public class SimulationImpl implements Simulation {
     public static ArrayList<TrainingCentre> trainingCentres = new ArrayList<>();
     static int month = 0;
     private final RandomGeneratorImpl randomGenerator = new RandomGeneratorImpl();
+    CentreManager centreManager = new CentreManager();
     private TechCentre techCentre = new TechCentre();
     private Bootcamp bootcamp = new Bootcamp();
     private TrainingHub trainingHub = new TrainingHub();
-
-    CentreManager centreManager = new CentreManager();
-
 
     @Override
     public ArrayList<Trainee> generateTrainees(int numberOfTrainees) {

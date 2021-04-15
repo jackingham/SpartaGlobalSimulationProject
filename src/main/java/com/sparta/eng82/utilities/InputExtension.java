@@ -8,7 +8,6 @@ import java.util.Scanner;
 public class InputExtension {
 
 
-
     public static boolean outputEveryMonth() {
         Scanner scanner = new Scanner(System.in);
 

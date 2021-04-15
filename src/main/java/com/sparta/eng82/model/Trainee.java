@@ -6,14 +6,14 @@ public class Trainee {
     private final int joinMonth;
     private final CourseTypes courseName;
 
-    public CourseTypes getCourseName() {
-        return courseName;
-    }
-
     public Trainee(int joinMonth) {
         this.joinMonth = joinMonth;
         id = idIncrementor++;
         this.courseName = CourseTypes.getRandomCourseType();
+    }
+
+    public CourseTypes getCourseName() {
+        return courseName;
     }
 
     public int getId() {
