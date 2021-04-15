@@ -207,3 +207,61 @@ The simulation should report on the following:
 - number of full centres (breakdown for each type)
 - number of trainees currently training (breakdown for each type)
 - number of trainees on the waiting list (breakdown for each type)
+
+## Requirements to Epics
+
+### Epic 1
+AS the head trainer, I WANT centres to close when the attendance is too low SO THAT I do not have unnecessarily open centres
+
+#### Solution Summary - *Patrick Walsh*
+
+> During this sprint, Golam and myself agreed that due to the introduction of different types of training centres, which also had a lot of conditions regarding the closing of the centres, we had to ensure we fully understood the logic before programming. We began by writing the pseudocode to help create a clearer picture of what we were designing.
+> 
+> Once we had completed the pseudocode and created the nested if statement to close the centres in accordance to the requirement, we began managing the trainees that were removed from the closing centres. Initially they are put into an array list, and from then the list is iterated through to then be enters to the front of the waiting list to then continue to be distributed withing the simulation.
+> 
+> New Class: 
+> CenterManager.java
+> 
+> New Methods: 
+> closeCentre(), 
+> addDisplacedTraineesToWaitingList()
+> 
+
+### Epic 2
+AS a head trainer I should receive information if a centre has less than 10 attendees SO THAT the trainees can be transferred to a random centre.
+
+#### Solution Summary - *Teniola Betti*
+
+> During this sprint, we extended the functionality of our ‘OutputManager’ to include the new requirements of creating a report for each training hub which is the ’OutputManager Extension ’. The new feature will utilise the simulation to produce the trainees and training centres.
+> 
+> For this epic we essentially created a new class for the existing OutputManager. Here we utilised HashMaps to store counts of certain centre and course types. These HashMaps were populated by iterating through the trainingCentre ArrayList and waitingList Queue. When populated, we simply obtained the key value pairs and printed them out to the user.
+
+> New functions:
+
+> The new methods utilises a HashMap to store the name of the training centre and a count for the number of occurrences for each. The ‘TraineesWaiting’ is a special case as although it functions similar to the other methods it will produce a total based on the number of trainees waiting for each course.
+	
+> getNumberOfOpenCentres(), 
+>	getNumberOfFullCentres(), 
+>	getNumberOfCurrentTrainees(), 
+>	getNumberOfTraineesWaiting()
+		
+> The ‘generateReport’ method will operate as a generator to produce the data stored within the HashMaps along with information to make the output more user friendly.
+
+> generateReport()
+
+### Epic 3
+AS the head trainer, I WANT to create different types of centres AND courses SO THAT I can cater to my training demand. 
+
+#### Solution Summary - *Patrick Walsh*
+
+> During the second sprint, we found the additional requirement of labelling different types of training centres quite a challenge in terms of following correct SOLID principles. there was an initial discussion of whether to introduce a 'centre_type' variable to the training centre or to make the training centre a parent class and design 3 new classes that extended the original training centre as parent class. 
+> 
+> We discussed further and with the understanding that each different type of centre had different contestant values for 'number of trainees enrolled' we believed designing 3 new classes was the correct way forward. The next step was to create 2 ENUM's - CentreTypes and CourseTypes in order to create objects of the training centres/trainees and assign the relevant types at random. 
+> 
+> New Classes: 
+> CentreTypes.java, 
+> CourseTypes.java, 
+> Bootcamp.java, 
+> TechCentre.java, 
+> TrainingHub.java
+
