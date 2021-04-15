@@ -22,11 +22,6 @@ public class Bootcamp extends TrainingCentre {
         return MAXIMUMCAPACITY;
     }
 
-    @Override
-    public void checkIfShouldClose() {
-        super.checkIfShouldClose();
-    }
-
     public int getNumberOfMonthsBelowRequiredAttendance() {
         return numberOfMonthsBelowRequiredAttendance;
     }

@@ -20,11 +20,6 @@ public class TechCentre extends TrainingCentre {
         return centreCourseName;
     }
 
-    @Override
-    public void checkIfShouldClose() {
-        super.checkIfShouldClose();
-    }
-
     public boolean full() {
         return getTraineeArray().size() == getMaximumCapacity();
     }

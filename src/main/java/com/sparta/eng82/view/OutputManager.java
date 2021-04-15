@@ -103,17 +103,17 @@ public class OutputManager {
         HashMap<String, Integer> temp = new HashMap<>();
 
         for (TrainingCentre trainingCentre : SimulationImpl.trainingCentres) {
-            if (trainingCentre.getClass().getSimpleName().equals("TechCentre") && !trainingCentre.isOpenStatus()) {
+            if (trainingCentre.getClass().getSimpleName().equals("TechCentre") && !trainingCentre.getFunctionStatus()) {
                 // if tech
                 totalTech++;
                 temp.put(trainingCentre.getClass().getSimpleName(), totalTech);
             }
-            if (trainingCentre.getClass().getSimpleName().equals("Bootcamp") && !trainingCentre.isOpenStatus()) {
+            if (trainingCentre.getClass().getSimpleName().equals("Bootcamp") && !trainingCentre.getFunctionStatus()) {
                 // if bootcamp
                 totalBootcamp++;
                 temp.put(trainingCentre.getClass().getSimpleName(), totalBootcamp);
             }
-            if (trainingCentre.getClass().getSimpleName().equals("TrainingHub") && !trainingCentre.isOpenStatus()) {
+            if (trainingCentre.getClass().getSimpleName().equals("TrainingHub") && !trainingCentre.getFunctionStatus()) {
                 // if training hub
                 totalTrainingHub++;
                 temp.put(trainingCentre.getClass().getSimpleName(), totalTrainingHub);
