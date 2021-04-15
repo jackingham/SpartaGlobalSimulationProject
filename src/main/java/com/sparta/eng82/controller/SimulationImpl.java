@@ -1,8 +1,9 @@
 package com.sparta.eng82.controller;
 
 import com.sparta.eng82.model.*;
+import com.sparta.eng82.utilities.Printer;
 import com.sparta.eng82.utilities.RandomGeneratorImpl;
-import com.sparta.eng82.view.OutputManager;
+import com.sparta.eng82.view.*;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -14,6 +15,9 @@ public class SimulationImpl implements Simulation {
     public static ArrayList<TrainingCentre> trainingCentres = new ArrayList<>();
     static int month = 0;
     private final RandomGeneratorImpl randomGenerator = new RandomGeneratorImpl();
+    private TechCentre techCentre = new TechCentre();
+    private Bootcamp bootcamp = new Bootcamp();
+    private TrainingHub trainingHub = new TrainingHub();
 
     @Override
     public ArrayList<Trainee> generateTrainees(int numberOfTrainees) {
@@ -26,20 +30,43 @@ public class SimulationImpl implements Simulation {
         return tempTrainees;
     }
 
+    public Queue<Trainee> getWaitingList () {
+        return waitingList;
+    }
+
+    public ArrayList<TrainingCentre> getTrainingCentres () {
+        return trainingCentres;
+    }
+
+    public void generateOutput () {
+        OutputManager outputManager = new OutputManager(getTrainingCentres(), getWaitingList());
+        outputManager.summary();
+    }
+
+    public int getMonth () {
+        return month;
+    }
+
     @Override
-    public TrainingCentre generateTrainingCentre() {
-        while(true){
+    public ArrayList<TrainingCentre> generateTrainingCentre() {
+        ArrayList<TrainingCentre> tempCentreList = new ArrayList<>();
+        while (true) {
             CentreTypes newCentreType = CentreTypes.getRandomCentreType();
             switch (newCentreType) {
                 case BOOTCAMP:
-                    if(Bootcamp.getLifetimeNumberOfBootcamps() < 2) {
+                    if (Bootcamp.getLifetimeNumberOfBootcamps() < 2) {
                         Bootcamp.incrementLifetimeNumberOfBootcamps();
-                        return new Bootcamp();
+                        tempCentreList.add(new Bootcamp());
+                        return tempCentreList;
                     }
                 case TECH_CENTRE:
-                    return new TechCentre();
+                    tempCentreList.add(new TechCentre());
+                    return tempCentreList;
                 case TRAINING_HUB:
-                    return new TrainingHub();
+                    for (int i = 0; i < 3; i++) {
+                        tempCentreList.add(new TrainingHub());
+                    }
+                    return tempCentreList;
                 default:
                     return null;
             }
@@ -49,78 +76,81 @@ public class SimulationImpl implements Simulation {
 
     @Override
     public void startSimulation(int numberOfMonths, boolean outputEveryMonth) {
-        if (outputEveryMonth) {
-            while (month <= numberOfMonths) {
+        int z = 0;
+        while (month <= numberOfMonths) {
+            System.out.println("Counter" + z++);
                 if (month != 0) {
                     waitingList.addAll(generateTrainees(randomGenerator.randomInt(20, 31)));
 
                     if (month % 2 == 0) {
-                        trainingCentres.add(generateTrainingCentre());
+                        trainingCentres.addAll(generateTrainingCentre());
                     }
-
                     for (TrainingCentre centre : trainingCentres) {
-                        if (centre.getTraineeArraySize() < 100) {
-                            int traineeIntake = randomGenerator.randomInt(0, 21);
-                            if (traineeIntake < 100 - centre.getTraineeArraySize()) {
-                                for (int i = 0; i < traineeIntake; i++) {
-                                    centre.addTraineeToCentre(waitingList.poll());
-                                }
-                            } else {
-                                for (int j = 0; j < 100 - centre.getTraineeArraySize(); j++) {
-                                    centre.addTraineeToCentre(waitingList.poll());
+                        if (centre.getClass().getTypeName().equals(bootcamp.getClass().getTypeName())) {
+                            if (centre.getTraineeArraySize() < Bootcamp.getMAXIMUMCAPACITY()) {
+                                int traineeIntake = randomGenerator.randomInt(0, 21);
+                                if (traineeIntake < Bootcamp.getMAXIMUMCAPACITY() - centre.getTraineeArraySize()) {
+                                    for (int i = 0; i < traineeIntake; i++) {
+                                        centre.addTraineeToCentre(waitingList.poll());
+                                    }
+                                } else {
+                                    for (int j = 0; j < Bootcamp.getMAXIMUMCAPACITY() - centre.getTraineeArraySize(); j++) {
+                                        centre.addTraineeToCentre(waitingList.poll());
+                                    }
                                 }
                             }
-                        }
-                    }
-                }
-                generateOutput();
-                month++;
-            }
-        }
-        while (month <= numberOfMonths) {
-            if (month != 0) {
-                waitingList.addAll(generateTrainees(randomGenerator.randomInt(20, 31)));
+                        } else if (centre.getClass().getTypeName().equals(trainingHub.getClass().getTypeName())) {
+                            if (centre.getTraineeArraySize() < TrainingHub.getMaximumCapacity()) {
+                                int traineeIntake = randomGenerator.randomInt(0, 21);
+                                if (traineeIntake < TrainingHub.getMaximumCapacity() - centre.getTraineeArraySize()) {
+                                    for (int i = 0; i < traineeIntake; i++) {
+                                        centre.addTraineeToCentre(waitingList.poll());
+                                    }
+                                } else {
+                                    for (int j = 0; j < TrainingHub.getMaximumCapacity() - centre.getTraineeArraySize(); j++) {
+                                        centre.addTraineeToCentre(waitingList.poll());
+                                    }
+                                }
+                            }
+                        } else if (centre.getClass().getTypeName().equals(techCentre.getClass().getTypeName())) {
+                            if (!techCentre.full()) {
+                                int traineeIntake = randomGenerator.randomInt(0, 21);
+                                if (traineeIntake > 0) {
+                                    CourseTypes courseTypes = techCentre.getCentreCourseName();
+                                    int i = 0;
+                                    int j = 0;
 
-                if (month % 2 == 0) {
-                    trainingCentres.add(generateTrainingCentre());
-                }
+                                    Queue<Trainee> tempWaitingList = new LinkedList<>();
 
-                for (TrainingCentre centre : trainingCentres) {
-                    if (centre.getTraineeArraySize() < 100) {
-                        int traineeIntake = randomGenerator.randomInt(0, 21);
-                        if (traineeIntake < 100 - centre.getTraineeArraySize()) {
-                            for (int i = 0; i < traineeIntake; i++) {
-                                centre.addTraineeToCentre(waitingList.poll());
+                                    while (i < traineeIntake && j < waitingList.size()){
+                                        for (Trainee trainee : waitingList) {
+                                            if (trainee.getCourseName().equals(courseTypes)) {
+                                                tempWaitingList.add(trainee);
+                                                i++;
+                                            }
+                                            if (i == traineeIntake){
+                                                break;
+                                            }
+                                        }
+                                        j++;
+                                    }
+                                    //TODO - Think about this, could be computationally expensive, is there a better way to break the while loop?
+                                    waitingList.removeAll(tempWaitingList);
+                                }
                             }
                         } else {
-                            for (int j = 0; j < 100 - centre.getTraineeArraySize(); j++) {
-                                centre.addTraineeToCentre(waitingList.poll());
-                            }
+                            Printer.printMessage("Error centre type unknown");
                         }
                     }
+
+                    if (outputEveryMonth) {
+                        generateOutput();
+                    }
                 }
-            }
             month++;
         }
-        generateOutput();
+        if(!outputEveryMonth) {
+            generateOutput();
+        }
     }
-
-    public Queue<Trainee> getWaitingList() {
-        return waitingList;
-    }
-
-    public ArrayList<TrainingCentre> getTrainingCentres() {
-        return trainingCentres;
-    }
-
-    public int getMonth() {
-        return month;
-    }
-
-    public void generateOutput() {
-        OutputManager outputManager = new OutputManager(getTrainingCentres(), getWaitingList());
-        outputManager.summary();
-    }
-
-
 }

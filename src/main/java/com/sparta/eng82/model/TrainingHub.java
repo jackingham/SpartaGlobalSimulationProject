@@ -2,7 +2,8 @@ package com.sparta.eng82.model;
 
 public class TrainingHub extends TrainingCentre {
 
-    private static final int maximumCapacity = 200;
+    public static String centreType= "TrainingHub";
+    private static final int MAXIMUMCAPACITY = 200;
 
     public TrainingHub() {
         super(CentreTypes.TRAINING_HUB);
@@ -14,6 +15,6 @@ public class TrainingHub extends TrainingCentre {
     }
 
     public static int getMaximumCapacity() {
-        return maximumCapacity;
+        return MAXIMUMCAPACITY;
     }
 }

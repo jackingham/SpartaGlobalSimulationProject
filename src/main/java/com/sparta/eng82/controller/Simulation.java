@@ -9,7 +9,7 @@ public interface Simulation {
 
     ArrayList<Trainee> generateTrainees(int numberOfTrainees);
 
-    TrainingCentre generateTrainingCentre();
+    ArrayList<TrainingCentre> generateTrainingCentre();
 
     void startSimulation(int numberOfMonths, boolean outputEveryMonth);
 }
