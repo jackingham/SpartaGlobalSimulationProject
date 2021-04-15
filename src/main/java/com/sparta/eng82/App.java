@@ -6,12 +6,7 @@ import com.sparta.eng82.utilities.InputValidator;
 
 public class App {
     public static void main(String[] args) {
-
         SimulationImpl simulation = new SimulationImpl();
         simulation.startSimulation(InputValidator.getUserInput(), InputExtension.outputEveryMonth());
-
-        //System.out.println(chooseTime());
-
     }
-
 }

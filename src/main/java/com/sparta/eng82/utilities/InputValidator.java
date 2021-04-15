@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class InputValidator {
 
-    private static Scanner scanner = new Scanner(System.in);
+    private static final Scanner scanner = new Scanner(System.in);
 
     public static int getUserInput() {
         System.out.println("Are you entering months, years or a combination of both?");

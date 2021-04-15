@@ -1,73 +1,210 @@
 package com.sparta.eng82.view;
 
-import com.sparta.eng82.model.Trainee;
-import com.sparta.eng82.model.TrainingCentre;
+import com.sparta.eng82.controller.SimulationImpl;
+import com.sparta.eng82.model.*;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.HashMap;
+import java.util.Map;
 
-public class OutputManager implements Output {
-    public static ArrayList<TrainingCentre> listOfCentres = new ArrayList<>();
-    private static Queue<Trainee> waitingList = new LinkedList<>();
+public class OutputManager {
 
+    public void generateReport(SimulationImpl simulation) {
+        OutputManager outputManager = new OutputManager();
+        // number of open centres
+        System.out.println("-- Number of Open Centres per Type --");
+        HashMap<String, Integer> temp = null;
 
-    public OutputManager(ArrayList<TrainingCentre> listOfCentres, Queue waitingList) {
-        OutputManager.listOfCentres = listOfCentres;
-        OutputManager.waitingList = waitingList;
+        temp = outputManager.getNumberOfOpenCentres();
+
+        for (Map.Entry<String, Integer> entry : temp.entrySet()) {
+            System.out.println("Centre: " + entry.getKey() + " Count: " + entry.getValue().toString());
+        }
+        if (temp.isEmpty()) {
+            System.out.println("...there are no open centres");
+        }
+
+        temp = outputManager.getNumberOfClosedCentres();
+        // number of closed centres
+        System.out.println("\n-- Number of Closed Centres per Type --");
+        for (Map.Entry<String, Integer> entry : temp.entrySet()) {
+            System.out.println("Centre: " + entry.getKey() + " Count: " + entry.getValue().toString());
+        }
+        if (temp.isEmpty()) {
+            System.out.println("...there are no closed centres");
+        }
+
+        temp = outputManager.getNumberOfFullCentres();
+        // number of full centres
+        System.out.println("\n-- Number of Full Centres per Type --");
+        for (Map.Entry<String, Integer> entry : temp.entrySet()) {
+            System.out.println("Centre: " + entry.getKey() + " Count: " + entry.getValue().toString());
+        }
+        if (temp.isEmpty()) {
+            System.out.println("...there are no full centres");
+        }
+
+        temp = outputManager.getNumberOfCurrentTrainees();
+        // number of current trainees in training
+        System.out.println("\n-- Number of Trainees in Training -- ");
+        for (Map.Entry<String, Integer> entry : outputManager.getNumberOfCurrentTrainees().entrySet()) {
+            System.out.println("Centre: " + entry.getKey() + " Count: " + entry.getValue().toString());
+        }
+        if (temp.isEmpty()) {
+            System.out.println("...there are no current trainees in training");
+        }
+
+        temp = outputManager.getNumberOfTraineesWaiting(simulation);
+        // number of current traines on waiting list
+        System.out.println("\n-- Number of Trainees on the Waiting List --");
+        for (Map.Entry<String, Integer> entry : temp.entrySet()) {
+            System.out.println("Course: " + entry.getKey() + " Count: " + entry.getValue().toString());
+        }
+        if (temp.isEmpty()) {
+            System.out.println("...there are no trainees on the waiting list");
+        }
     }
 
+    private HashMap<String, Integer> getNumberOfOpenCentres() {
 
-    @Override
-    public int numberOfCentres() {
-        return listOfCentres.size();
-    }
+        int totalTech = 0;
+        int totalBootcamp = 0;
+        int totalTrainingHub = 0;
 
-    @Override
-    public int numberOfOpenCentres() {
-        int openCentres = 0;
-        for (TrainingCentre openCentre : listOfCentres) {
-            if (openCentre.isOpen()) {
-                openCentres++;
+        HashMap<String, Integer> temp = new HashMap<>();
+
+        for (TrainingCentre trainingCentre : SimulationImpl.trainingCentres) {
+            if (trainingCentre.getClass().getSimpleName().equals("TechCentre") && !((TechCentre) trainingCentre).full()) {
+                // if tech
+                totalTech++;
+                temp.put(trainingCentre.getClass().getSimpleName(), totalTech);
+            }
+            if (trainingCentre.getClass().getSimpleName().equals("Bootcamp") && !((Bootcamp) trainingCentre).full()) {
+                // if bootcamp
+                totalBootcamp++;
+                temp.put(trainingCentre.getClass().getSimpleName(), totalBootcamp);
+            }
+            if (trainingCentre.getClass().getSimpleName().equals("TrainingHub") && !((TrainingHub) trainingCentre).full()) {
+                // if training hub
+                totalTrainingHub++;
+                temp.put(trainingCentre.getClass().getSimpleName(), totalTrainingHub);
             }
         }
-        return openCentres;
+        return temp;
     }
 
-    @Override
-    public int numberOfFullCentres() {
-//        int fullCentres = 0;
-//        for (TrainingCentre fullCentre : listOfCentres) {
-//            if (!fullCentre.isOpen()) {
-//                fullCentres++;
-//            }
-//        }
-//        return fullCentres;
-        return numberOfCentres() - numberOfOpenCentres();
-    }
+    private HashMap<String, Integer> getNumberOfClosedCentres() {
+        int totalTech = 0;
+        int totalBootcamp = 0;
+        int totalTrainingHub = 0;
 
-    @Override
-    public int numberOfTraineesInTraining() {
-        int traineesTraining = 0;
-        for (TrainingCentre numberOfTrainees : listOfCentres) {
-            traineesTraining += numberOfTrainees.getTraineeArraySize();
+        HashMap<String, Integer> temp = new HashMap<>();
+
+        for (TrainingCentre trainingCentre : SimulationImpl.trainingCentres) {
+            if (trainingCentre.getClass().getSimpleName().equals("TechCentre") && !trainingCentre.isOpenStatus()) {
+                // if tech
+                totalTech++;
+                temp.put(trainingCentre.getClass().getSimpleName(), totalTech);
+            }
+            if (trainingCentre.getClass().getSimpleName().equals("Bootcamp") && !trainingCentre.isOpenStatus()) {
+                // if bootcamp
+                totalBootcamp++;
+                temp.put(trainingCentre.getClass().getSimpleName(), totalBootcamp);
+            }
+            if (trainingCentre.getClass().getSimpleName().equals("TrainingHub") && !trainingCentre.isOpenStatus()) {
+                // if training hub
+                totalTrainingHub++;
+                temp.put(trainingCentre.getClass().getSimpleName(), totalTrainingHub);
+            }
         }
-        return traineesTraining;
+        return temp;
     }
 
-    @Override
-    public int numberOfTraineesInWaiting() {
-        return waitingList.size();
+
+    private HashMap<String, Integer> getNumberOfFullCentres() {
+        int totalTech = 0;
+        int totalBootcamp = 0;
+        int totalTrainingHub = 0;
+
+        HashMap<String, Integer> temp = new HashMap<>();
+
+        for (TrainingCentre trainingCentre : SimulationImpl.trainingCentres) {
+            if (trainingCentre.getClass().getSimpleName().equals("TechCentre") && ((TechCentre) trainingCentre).full()) {
+                // if tech
+                totalTech++;
+                temp.put(trainingCentre.getClass().getSimpleName(), totalTech);
+            }
+            if (trainingCentre.getClass().getSimpleName().equals("Bootcamp") && ((Bootcamp) trainingCentre).full()) {
+                // if bootcamp
+                totalBootcamp++;
+                temp.put(trainingCentre.getClass().getSimpleName(), totalBootcamp);
+            }
+            if (trainingCentre.getClass().getSimpleName().equals("TrainingHub") && ((TrainingHub) trainingCentre).full()) {
+                // if training hub
+                totalTrainingHub++;
+                temp.put(trainingCentre.getClass().getSimpleName(), totalTrainingHub);
+            }
+        }
+        return temp;
     }
 
-    @Override
-    public void summary() {
-        System.out.println("\nTraining Centres: " +
-                "\n\tOpen: " + numberOfOpenCentres() +
-                "\n\tFull: " + numberOfFullCentres() +
-                "\nTrainees: " +
-                "\n\tIn Training: " + numberOfTraineesInTraining() +
-                "\n\tIn Waiting: " + numberOfTraineesInWaiting()
-        );
+    private HashMap<String, Integer> getNumberOfCurrentTrainees() {
+        int totalTech = 0;
+        int totalBootcamp = 0;
+        int totalTrainingHub = 0;
+
+        HashMap<String, Integer> temp = new HashMap<>();
+
+        for (TrainingCentre trainingCentre : SimulationImpl.trainingCentres) {
+            if (trainingCentre.getClass().getSimpleName().equals("TechCentre")) {
+                // if tech
+                totalTech += trainingCentre.getTraineeArraySize();
+                temp.put(trainingCentre.getClass().getSimpleName(), totalTech);
+            }
+            if (trainingCentre.getClass().getSimpleName().equals("Bootcamp")) {
+                // if bootcamp
+                totalBootcamp += trainingCentre.getTraineeArraySize();
+                temp.put(trainingCentre.getClass().getSimpleName(), totalBootcamp);
+            }
+            if (trainingCentre.getClass().getSimpleName().equals("TrainingHub")) {
+                // if training hub
+                totalTrainingHub += trainingCentre.getTraineeArraySize();
+                temp.put(trainingCentre.getClass().getSimpleName(), totalTrainingHub);
+            }
+        }
+        return temp;
+    }
+
+    private HashMap<String, Integer> getNumberOfTraineesWaiting(SimulationImpl simulation) {
+        int totalJava = 0;
+        int totalCsharp = 0;
+        int totalData = 0;
+        int totalDevops = 0;
+        int totalBusiness = 0;
+
+        HashMap<String, Integer> temp = new HashMap<>();
+
+        for (Trainee trainee : simulation.getWaitingList()) {
+            if (trainee.getCourseName().toString().equals("JAVA")) {
+                totalJava += 1;
+                temp.put("Java", totalJava);
+            }
+            if (trainee.getCourseName().toString().equals("C_SHARP")) {
+                totalCsharp += 1;
+                temp.put("C#", totalCsharp);
+            }
+            if (trainee.getCourseName().toString().equals("DATA")) {
+                totalData += 1;
+                temp.put("Data", totalData);
+            }
+            if (trainee.getCourseName().toString().equals("DEVOPS")) {
+                totalDevops += 1;
+                temp.put("DevOps", totalDevops);
+            }
+            if (trainee.getCourseName().toString().equals("BUSINESS")) {
+                totalBusiness += 1;
+                temp.put("Business", totalBusiness);
+            }
+        }
+        return temp;
     }
 }
