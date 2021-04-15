@@ -5,9 +5,7 @@ import com.sparta.eng82.utilities.Printer;
 import com.sparta.eng82.utilities.RandomGeneratorImpl;
 import com.sparta.eng82.view.OutputManager;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
 
 public class SimulationImpl implements Simulation {
 
@@ -19,6 +17,7 @@ public class SimulationImpl implements Simulation {
     private final Bootcamp bootcamp = new Bootcamp();
     private final TrainingHub trainingHub = new TrainingHub();
     CentreManager centreManager = new CentreManager();
+    OutputManager outputManager = new OutputManager();
 
     @Override
     public ArrayList<Trainee> generateTrainees(int numberOfTrainees) {
@@ -78,7 +77,9 @@ public class SimulationImpl implements Simulation {
     @Override
     public void startSimulation(int numberOfMonths, boolean outputEveryMonth) {
         while (month <= numberOfMonths) {
-            centreManager.closeCentre(trainingCentres);
+            if(month >= 3){
+                centreManager.closeCentre(trainingCentres);
+            }
             if (month != 0) {
                 waitingList.addAll(generateTrainees(randomGenerator.randomInt(20, 31)));
 
@@ -87,9 +88,12 @@ public class SimulationImpl implements Simulation {
                 }
 
                 for (TrainingCentre centre : trainingCentres) {
+//                    System.out.println(centre.getClass().getTypeName());
                     if (centre.getClass().getTypeName().equals(bootcamp.getClass().getTypeName())) {
+//                        System.out.println(centre.getTraineeArraySize());
                         if (centre.getTraineeArraySize() < Bootcamp.getMaximumCapacity()) {
                             int traineeIntake = randomGenerator.randomInt(0, 21);
+//                            System.out.println(traineeIntake + " / " + (Bootcamp.getMaximumCapacity() - centre.getTraineeArraySize()));
                             if (traineeIntake < Bootcamp.getMaximumCapacity() - centre.getTraineeArraySize()) {
                                 for (int i = 0; i < traineeIntake; i++) {
                                     centre.addTraineeToCentre(waitingList.poll());
@@ -123,20 +127,33 @@ public class SimulationImpl implements Simulation {
 
                                 Queue<Trainee> tempWaitingList = new LinkedList<>();
 
-                                while (i < traineeIntake && j < waitingList.size()) {
-                                    for (Trainee trainee : waitingList) {
-                                        if (trainee.getCourseName().equals(courseTypes)) {
-                                            tempWaitingList.add(trainee);
-                                            i++;
+                                HashMap<String, Integer> stuff =  outputManager.getNumberOfOpenCentres();
+
+                                //System.out.println(stuff.values());
+                                //System.out.println(waitingList);
+
+                                waitingList.removeIf(Objects::isNull);
+
+                                if(!waitingList.isEmpty()) {
+                                    while (i < traineeIntake && j < waitingList.size()) {
+                                        for (Trainee trainee : waitingList) {
+                                            if (trainee.getCourseName().equals(courseTypes)) {
+                                                tempWaitingList.add(trainee);
+                                                i++;
+                                            }
+                                            if (i == traineeIntake) {
+                                                break;
+                                            }
                                         }
-                                        if (i == traineeIntake) {
-                                            break;
-                                        }
+                                        j++;
                                     }
-                                    j++;
+                                    //TODO - Think about this, could be computationally expensive, is there a better way to break the while loop?
+
+                                    for(Trainee trainee : tempWaitingList){
+                                        centre.addTraineeToCentre(trainee);
+                                    }
+                                    waitingList.removeAll(tempWaitingList);
                                 }
-                                //TODO - Think about this, could be computationally expensive, is there a better way to break the while loop?
-                                waitingList.removeAll(tempWaitingList);
                             }
                         }
                     } else {
@@ -146,15 +163,26 @@ public class SimulationImpl implements Simulation {
 
                 if (outputEveryMonth) {
                     OutputManager outputManager = new OutputManager();
-                    outputManager.generateReport(this);
+                    outputManager.generateReport(this, month);
                 }
             }
             month++;
         }
         if (!outputEveryMonth) {
             OutputManager outputManager = new OutputManager();
-            outputManager.generateReport(this);
+            outputManager.generateReport(this, month);
         }
+
+//        for(TrainingCentre tc : trainingCentres){
+//            if(tc.getClass().getTypeName().equals(bootcamp.getClass().getTypeName())){
+//                System.out.println(tc.getClass().getTypeName());
+//                System.out.println(((Bootcamp)tc).isOpenStatus());
+//                System.out.println(tc.getTraineeArraySize());
+//            }
+//        }
+
+
+
     }
 
 
