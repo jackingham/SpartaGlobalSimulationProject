@@ -5,8 +5,8 @@ import java.util.Random;
 public enum CourseTypes {
     JAVA, C_SHARP, DATA, DEVOPS, BUSINESS;
 
-    public static String getRandomCourseType() {
+    public static CourseTypes getRandomCourseType() {
         Random random = new Random();
-        return String.valueOf(values()[random.nextInt(values().length)]);
+        return values()[random.nextInt(values().length)];
     }
 }

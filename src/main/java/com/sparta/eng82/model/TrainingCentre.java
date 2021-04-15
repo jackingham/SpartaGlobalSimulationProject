@@ -8,7 +8,7 @@ public class TrainingCentre {
     private static int numberOfCentreType;
     private final int id;
     private final ArrayList<Trainee> traineeArray = new ArrayList<>();
-    private int traineeCapcity;
+    private final int traineeCapcity = 100;
 
     public TrainingCentre(CentreTypes ct) {
 
