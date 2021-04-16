@@ -265,18 +265,39 @@ As the head trainer, I want to create different types of centres AND courses so 
 
 ### Sprint Review
 
+Upon review some bugs were visible to the product owner. This bug seemed to happen every 1/10 runs which was why it was overlooked prior to the review. Once receiving this feedback the team decided to inspect the code further and debug the software, eventually debugging it. In the second review with the product owner was happy with the result and we proceeded to mark user stories as completed.
+
 ### Sprint Retrospective
 
+The team work really well compared to the first sprint but some members were getting frustrated due to technical skill difference. After addressing this, this behaviour stopped immediately and workflow continued. The general prospect of this sprint was positive as the sub teams performed at a higher efficiency and effectiveness.
 
-## :small_blue_diamond: Sprint 3 <a name="sprint0"></a>
+## :small_blue_diamond: Sprint 3 <a name="sprint3"></a>
 
 ### The Requirements
 
 Richard would like the software to have a simple user interaface to run the simulation.
 
+The user interface should have the same input functionality as the original piece of software:
+- Choice for month
+- Choice for year
+- Choice for both
+- Start simulation button
+- Choice for reporting every month
+
 ## Requirements to Epics
+
+### Epic 1
+
+As a user, I should be able to easily start the simulation so that I can stream line the simulation proccess which will save me time out of my busy schedule.
+
+### Epic 2
+
+As a user, I should be able to have the same choices as in requirement 2 but implemented in the user interface so that I can specify how I want my simulation to run.
 
 ### Sprint Review
 
+Once completed, the product owner tested the user interface infront of the team and was happy with the requirement.
+
 ### Sprint Retrospective
 
+This sprint was much shorter than the previous two and with urgency to finish, the team lacked no hesitation to complete assigned work by the scrum master.
