@@ -24,7 +24,7 @@ public class InputValidator{
                     return verifyInteger() * 12;
 
                 case "ym":
-                case "my":
+//                case "my":
                     System.out.println("Enter how many years the simulation should run for: ");
                     int months = verifyInteger() * 12;
                     System.out.println("Enter for how many months the simulation should run: ");

@@ -110,20 +110,40 @@ public class UI {
                 if( yearsRadio.isSelected()){
                     responseOne = "y";
                     responses[0] = responseOne;
-                    responses[1] = years.getText();
+                    if(years.getText().equals("")){
+                        responses[1] = "0";
+                    }
+                    else {
+                        responses[1] = years.getText();
+                    }
                     responses[2] = "0";
                 }
                 else if( monthsRadio.isSelected()){
                     responseTwo = "m";
                     responses[0] = responseTwo;
                     responses[1] = "0";
-                    responses[2] = months.getText();
+                    if(months.getText().equals("")){
+                        responses[2] = "0";
+                    }
+                    else {
+                        responses[2] = months.getText();
+                    }
                 }
                 else if( yAndMRadio.isSelected()){
                     responseThree = "ym";
                     responses[0] = responseThree;
-                    responses[1] = years.getText();
-                    responses[2] = months.getText();
+                    if(years.getText().equals("")){
+                        responses[1] = "0";
+                    }
+                    else {
+                        responses[1] = years.getText();
+                    }
+                    if(months.getText().equals("")){
+                        responses[2] = "0";
+                    }
+                    else {
+                        responses[2] = months.getText();
+                    }
                 }
                 else{
                     responses[0] = "m";
