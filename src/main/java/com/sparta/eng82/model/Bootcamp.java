@@ -39,9 +39,9 @@ public class Bootcamp extends TrainingCentre {
     }
 
 
-    public static void setLifetimeNumberOfBootcamps(int lifetimeNumberOfBootcamps) {
+    /*public static void setLifetimeNumberOfBootcamps(int lifetimeNumberOfBootcamps) {
         Bootcamp.lifetimeNumberOfBootcamps = lifetimeNumberOfBootcamps;
-    }
+    }*/
 
     public void setNumberOfMonthsBelowRequiredAttendance(int numberOfMonthsBelowRequiredAttendance) {
         this.numberOfMonthsBelowRequiredAttendance = numberOfMonthsBelowRequiredAttendance;
