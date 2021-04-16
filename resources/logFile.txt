@@ -1,0 +1,1 @@
+[INFO ] 2021-04-13 16:08:22.431 [main] testOutput - There is 1 centre.
