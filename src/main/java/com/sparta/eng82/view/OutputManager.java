@@ -136,6 +136,7 @@ public class OutputManager {
                 totalTech++;
                 temp.put(trainingCentre.getClass().getSimpleName(), totalTech);
             }
+
             if (trainingCentre.getClass().getSimpleName().equals("Bootcamp") && ((Bootcamp) trainingCentre).full()) {
                 // if bootcamp
                 totalBootcamp++;
@@ -165,6 +166,8 @@ public class OutputManager {
             }
             if (trainingCentre.getClass().getSimpleName().equals("Bootcamp")) {
                 // if bootcamp
+                System.out.println("totalBootcamp::"+totalBootcamp);
+                System.out.println("trainingCentre.getTraineeArraySize():"+trainingCentre.getTraineeArraySize());
                 totalBootcamp += trainingCentre.getTraineeArraySize();
                 temp.put(trainingCentre.getClass().getSimpleName(), totalBootcamp);
             }
@@ -185,29 +188,34 @@ public class OutputManager {
         int totalBusiness = 0;
 
         HashMap<String, Integer> temp = new HashMap<>();
-
+        //  if(simulation.getWaitingList()!=null){
         for (Trainee trainee : simulation.getWaitingList()) {
-            if (trainee.getCourseName().toString().equals("JAVA")) {
-                totalJava += 1;
-                temp.put("Java", totalJava);
-            }
-            if (trainee.getCourseName().toString().equals("C_SHARP")) {
-                totalCsharp += 1;
-                temp.put("C#", totalCsharp);
-            }
-            if (trainee.getCourseName().toString().equals("DATA")) {
-                totalData += 1;
-                temp.put("Data", totalData);
-            }
-            if (trainee.getCourseName().toString().equals("DEVOPS")) {
-                totalDevops += 1;
-                temp.put("DevOps", totalDevops);
-            }
-            if (trainee.getCourseName().toString().equals("BUSINESS")) {
-                totalBusiness += 1;
-                temp.put("Business", totalBusiness);
+            if(trainee!=null) {
+                //System.out.println(trainee);
+                //System.out.println(trainee.getCourseName().toString());
+                if (trainee.getCourseName().toString().equals("JAVA")) {
+                    totalJava += 1;
+                    temp.put("Java", totalJava);
+                }
+                if (trainee.getCourseName().toString().equals("C_SHARP")) {
+                    totalCsharp += 1;
+                    temp.put("C#", totalCsharp);
+                }
+                if (trainee.getCourseName().toString().equals("DATA")) {
+                    totalData += 1;
+                    temp.put("Data", totalData);
+                }
+                if (trainee.getCourseName().toString().equals("DEVOPS")) {
+                    totalDevops += 1;
+                    temp.put("DevOps", totalDevops);
+                }
+                if (trainee.getCourseName().toString().equals("BUSINESS")) {
+                    totalBusiness += 1;
+                    temp.put("Business", totalBusiness);
+                }
             }
         }
+        //  }
         return temp;
     }
 }

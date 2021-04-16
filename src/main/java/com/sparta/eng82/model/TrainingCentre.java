@@ -18,6 +18,7 @@ public class TrainingCentre {
 
     }
 
+
     public int getId() {
         return id;
     }
@@ -31,11 +32,11 @@ public class TrainingCentre {
     }
 
     public ArrayList<Trainee> getTraineeArray() {
-        return traineeArray;
+        return this.traineeArray;
     }
 
     public boolean isOpenStatus() {
-        return openStatus;
+        return this.openStatus;
     }
 
     public void setOpenStatus(boolean openStatus) {
@@ -43,7 +44,7 @@ public class TrainingCentre {
     }
 
     public void removeAllTrainees(){
-        traineeArray.clear();
+        this.traineeArray.clear();
     }
 
     public boolean getFunctionStatus() {

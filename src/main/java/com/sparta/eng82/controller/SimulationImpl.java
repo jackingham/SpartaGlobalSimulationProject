@@ -52,6 +52,7 @@ public class SimulationImpl implements Simulation {
         ArrayList<TrainingCentre> tempCentreList = new ArrayList<>();
         while (true) {
             CentreTypes newCentreType = CentreTypes.getRandomCentreType();
+            //System.out.println(newCentreType);
             switch (newCentreType) {
                 case BOOTCAMP:
                     if (Bootcamp.getLifetimeNumberOfBootcamps() < 2) {
@@ -77,9 +78,9 @@ public class SimulationImpl implements Simulation {
     @Override
     public void startSimulation(int numberOfMonths, boolean outputEveryMonth) {
         while (month <= numberOfMonths) {
-            if(month >= 3){
-                centreManager.closeCentre(trainingCentres);
-            }
+            //if(month >= 3){  //Commented this code as a change
+
+            //}
             if (month != 0) {
                 waitingList.addAll(generateTrainees(randomGenerator.randomInt(20, 31)));
 
@@ -88,26 +89,29 @@ public class SimulationImpl implements Simulation {
                 }
 
                 for (TrainingCentre centre : trainingCentres) {
-//                    System.out.println("1: " + centre.getClass().getTypeName());
+                    // System.out.println("1: " + centre.getClass().getTypeName());
+
                     if (centre.getClass().getTypeName().equals(bootcamp.getClass().getTypeName())) {
-//                        System.out.println("2: " + centre.getTraineeArraySize());
-                        if (centre.getTraineeArraySize() < Bootcamp.getMaximumCapacity()) {
-                            int traineeIntake = randomGenerator.randomInt(0, 21);
-//                            System.out.println("3: " + traineeIntake + " / " + (Bootcamp.getMaximumCapacity() - centre.getTraineeArraySize()));
-                            if (traineeIntake < Bootcamp.getMaximumCapacity() - centre.getTraineeArraySize()) {
-                                for (int i = 0; i < traineeIntake; i++) {
-                                    centre.addTraineeToCentre(waitingList.poll());
+                        System.out.println("In SimulationImpl " + centre.getTraineeArraySize());
+                        if(centre.getTraineeArraySize()!=Bootcamp.getMaximumCapacity()){ //changed here
+                            if (centre.getTraineeArraySize() < Bootcamp.getMaximumCapacity()) {
+                                int traineeIntake = randomGenerator.randomInt(0, 21);
+                                System.out.println("3 Bootcamp: " + traineeIntake + " / " + (Bootcamp.getMaximumCapacity() - centre.getTraineeArraySize()));
+                                if (traineeIntake < (Bootcamp.getMaximumCapacity() - centre.getTraineeArraySize())) {//why not <=?
+                                    for (int i = 0; i < traineeIntake; i++) {
+                                        centre.addTraineeToCentre(waitingList.poll());
+                                    }
+                                    System.out.println(centre.getTraineeArraySize());
                                 }
-                            }
-                            else {
-//                                System.out.println("4: " + traineeIntake + " / " + (Bootcamp.getMaximumCapacity() - centre.getTraineeArraySize()));
-                                for (int j = 0; j < Bootcamp.getMaximumCapacity() - centre.getTraineeArraySize(); j++) {
-                                    centre.addTraineeToCentre(waitingList.poll());
+                                else {
+                                    System.out.println("4: " + traineeIntake + " / " + (Bootcamp.getMaximumCapacity() - centre.getTraineeArraySize()));
+                                    for (int j = 0; j < (Bootcamp.getMaximumCapacity() - centre.getTraineeArraySize()); j++) {
+                                        centre.addTraineeToCentre(waitingList.poll());
 //                                    System.out.println("5: " + j);
+                                    }
                                 }
                             }
-                        }
-                    } else if (centre.getClass().getTypeName().equals(trainingHub.getClass().getTypeName())) {
+                        }} else if (centre.getClass().getTypeName().equals(trainingHub.getClass().getTypeName())) {
                         if (centre.getTraineeArraySize() < TrainingHub.getMaximumCapacity()) {
                             int traineeIntake = randomGenerator.randomInt(0, 21);
                             if (traineeIntake < TrainingHub.getMaximumCapacity() - centre.getTraineeArraySize()) {
@@ -163,6 +167,7 @@ public class SimulationImpl implements Simulation {
                         Printer.printMessage("Error centre type unknown");
                     }
                 }
+                centreManager.closeCentre(trainingCentres);
 
                 if (outputEveryMonth) {
                     OutputManager outputManager = new OutputManager();
