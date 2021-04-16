@@ -5,9 +5,9 @@ import java.util.Scanner;
 
 public class InputValidator{
 
-    private static final Scanner scanner = new Scanner(System.in);
+    private static Scanner scanner = new Scanner(System.in);
 
-    public static int getUserInput() {
+    public static Integer getUserInput() {
         System.out.println("Are you entering months, years or a combination of both?");
 
         String userTimeChoice = verifyTimeframe();
@@ -26,7 +26,7 @@ public class InputValidator{
                 case "ym":
 //                case "my":
                     System.out.println("Enter how many years the simulation should run for: ");
-                    int months = verifyInteger() * 12;
+                    Integer months = verifyInteger() * 12;
                     System.out.println("Enter for how many months the simulation should run: ");
                     return verifyInteger() + months;
 
@@ -56,17 +56,15 @@ public class InputValidator{
         return input;
     }
 
-
     public static String verifyTimeframe() {
         System.out.println("choose Y, M or YM");
         String chosenTime = (scanner.nextLine()).toLowerCase();
         while (!(chosenTime.equalsIgnoreCase("y") || chosenTime.equalsIgnoreCase("m") || chosenTime.equalsIgnoreCase("my") || chosenTime.equalsIgnoreCase("ym"))) {
-            System.out.println("try again, please choose Y, M or YM");
+            System.out.println("Please choose Y, M or YM");
             chosenTime = (scanner.nextLine()).toLowerCase();
         }
         return chosenTime;
     }
-
 
 
 }

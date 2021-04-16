@@ -27,9 +27,9 @@ class RandomGeneratorImplTest {
     @Test
     @DisplayName("Testing that that the returned value is in the specified range for the generator")
     public void testRangeIsCorrect() {
-        int upper = 20;
-        int lower = 10;
-        int result = randomGenerator.randomInt(lower, upper);
+        Integer upper = 20;
+        Integer lower = 10;
+        Integer result = randomGenerator.randomInt(lower, upper);
         if (result <= upper && result >= lower) {
             assertTrue(true);
         }

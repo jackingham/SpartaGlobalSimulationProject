@@ -45,7 +45,7 @@ class PrinterTest {
     @Test
     @DisplayName("Tests that printmessage works as expected with embedded ints")
     public void testPrintMessageInt(){
-        int number = 82;
+        Integer number = 82;
         Printer.printMessage("Engineering "+number);
         assertEquals("Engineering 82\r\n", outContent.toString()); //uses different line separators.
     }

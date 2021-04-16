@@ -3,7 +3,7 @@ package com.sparta.eng82.model;
 public class TechCentre extends TrainingCentre {
 
 
-    private static final int MAXIMUMCAPACITY = 200;
+    private static final Integer MAXIMUMCAPACITY = 200;
     public static String centreType = "TechCentre";
     private final CourseTypes centreCourseName;
 
@@ -12,7 +12,7 @@ public class TechCentre extends TrainingCentre {
         this.centreCourseName = CourseTypes.getRandomCourseType();
     }
 
-    public static int getMaximumCapacity() {
+    public static Integer getMaximumCapacity() {
         return MAXIMUMCAPACITY;
     }
 

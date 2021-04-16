@@ -20,7 +20,7 @@ public class SimulationImpl implements Simulation {
     private final OutputManager outputManager = new OutputManager();
 
     @Override
-    public ArrayList<Trainee> generateTrainees(int numberOfTrainees) {
+    public ArrayList<Trainee> generateTrainees(Integer numberOfTrainees) {
         ArrayList<Trainee> tempTrainees = new ArrayList<>();
 
         for (int i = 0; i < numberOfTrainees; i++) {
@@ -38,11 +38,6 @@ public class SimulationImpl implements Simulation {
         return trainingCentres;
     }
 
-//    public void generateOutput() {
-//        OutputManager outputManager = new OutputManager(getTrainingCentres(), getWaitingList());
-//        outputManager.summary();
-//    }
-
     public int getMonth() {
         return month;
     }
@@ -52,7 +47,6 @@ public class SimulationImpl implements Simulation {
         ArrayList<TrainingCentre> tempCentreList = new ArrayList<>();
         while (true) {
             CentreTypes newCentreType = CentreTypes.getRandomCentreType();
-            //System.out.println(newCentreType);
             switch (newCentreType) {
                 case BOOTCAMP:
                     if (Bootcamp.getLifetimeNumberOfBootcamps() < 2) {
@@ -76,11 +70,8 @@ public class SimulationImpl implements Simulation {
     }
 
     @Override
-    public void startSimulation(int numberOfMonths, boolean outputEveryMonth) {
+    public void startSimulation(Integer numberOfMonths, boolean outputEveryMonth) {
         while (month <= numberOfMonths) {
-            //if(month >= 3){  //Commented this code as a change
-
-            //}
             if (month != 0) {
                 waitingList.addAll(generateTrainees(randomGenerator.randomInt(20, 31)));
 
@@ -89,25 +80,19 @@ public class SimulationImpl implements Simulation {
                 }
 
                 for (TrainingCentre centre : trainingCentres) {
-                    // System.out.println("1: " + centre.getClass().getTypeName());
 
                     if (centre.getClass().getTypeName().equals(bootcamp.getClass().getTypeName())) {
-                        System.out.println("In SimulationImpl " + centre.getTraineeArraySize());
                         if(centre.getTraineeArraySize()!=Bootcamp.getMaximumCapacity()){ //changed here
                             if (centre.getTraineeArraySize() < Bootcamp.getMaximumCapacity()) {
                                 int traineeIntake = randomGenerator.randomInt(0, 21);
-                                System.out.println("3 Bootcamp: " + traineeIntake + " / " + (Bootcamp.getMaximumCapacity() - centre.getTraineeArraySize()));
                                 if (traineeIntake < (Bootcamp.getMaximumCapacity() - centre.getTraineeArraySize())) {//why not <=?
                                     for (int i = 0; i < traineeIntake; i++) {
                                         centre.addTraineeToCentre(waitingList.poll());
                                     }
-                                    System.out.println(centre.getTraineeArraySize());
                                 }
                                 else {
-                                    System.out.println("4: " + traineeIntake + " / " + (Bootcamp.getMaximumCapacity() - centre.getTraineeArraySize()));
                                     for (int j = 0; j < (Bootcamp.getMaximumCapacity() - centre.getTraineeArraySize()); j++) {
                                         centre.addTraineeToCentre(waitingList.poll());
-//                                    System.out.println("5: " + j);
                                     }
                                 }
                             }
@@ -135,9 +120,6 @@ public class SimulationImpl implements Simulation {
                                 Queue<Trainee> tempWaitingList = new LinkedList<>();
 
                                 HashMap<String, Integer> stuff =  outputManager.getNumberOfOpenCentres();
-
-                                //System.out.println(stuff.values());
-                                //System.out.println(waitingList);
 
                                 waitingList.removeIf(Objects::isNull);
 
@@ -175,14 +157,6 @@ public class SimulationImpl implements Simulation {
                 }
             }
             month++;
-        }
-
-        for(TrainingCentre tc : trainingCentres){
-            if(tc.getClass().getTypeName().equals(bootcamp.getClass().getTypeName())){
-                System.out.println(tc.getClass().getTypeName());
-                System.out.println(((Bootcamp)tc).isOpenStatus());
-                System.out.println(tc.getTraineeArraySize());
-            }
         }
 
         if (!outputEveryMonth) {

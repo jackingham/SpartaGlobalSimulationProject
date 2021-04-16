@@ -8,7 +8,8 @@ import java.util.Map;
 
 public class OutputManager {
 
-    public void generateReport(SimulationImpl simulation, int month) {
+    public void generateReport(SimulationImpl simulation, Integer month) {
+        month--;
         System.out.println("\n##### Month: " + month + " #####");
 
         OutputManager outputManager = new OutputManager();
@@ -69,9 +70,9 @@ public class OutputManager {
     //TODO make Private!
     public HashMap<String, Integer> getNumberOfOpenCentres() {
 
-        int totalTech = 0;
-        int totalBootcamp = 0;
-        int totalTrainingHub = 0;
+        Integer totalTech = 0;
+        Integer totalBootcamp = 0;
+        Integer totalTrainingHub = 0;
 
         HashMap<String, Integer> temp = new HashMap<>();
 
@@ -96,9 +97,9 @@ public class OutputManager {
     }
 
     private HashMap<String, Integer> getNumberOfClosedCentres() {
-        int totalTech = 0;
-        int totalBootcamp = 0;
-        int totalTrainingHub = 0;
+        Integer totalTech = 0;
+        Integer totalBootcamp = 0;
+        Integer totalTrainingHub = 0;
 
         HashMap<String, Integer> temp = new HashMap<>();
 
@@ -124,9 +125,9 @@ public class OutputManager {
 
 
     private HashMap<String, Integer> getNumberOfFullCentres() {
-        int totalTech = 0;
-        int totalBootcamp = 0;
-        int totalTrainingHub = 0;
+        Integer totalTech = 0;
+        Integer totalBootcamp = 0;
+        Integer totalTrainingHub = 0;
 
         HashMap<String, Integer> temp = new HashMap<>();
 
@@ -152,9 +153,9 @@ public class OutputManager {
     }
 
     private HashMap<String, Integer> getNumberOfCurrentTrainees() {
-        int totalTech = 0;
-        int totalBootcamp = 0;
-        int totalTrainingHub = 0;
+        Integer totalTech = 0;
+        Integer totalBootcamp = 0;
+        Integer totalTrainingHub = 0;
 
         HashMap<String, Integer> temp = new HashMap<>();
 
@@ -166,8 +167,6 @@ public class OutputManager {
             }
             if (trainingCentre.getClass().getSimpleName().equals("Bootcamp")) {
                 // if bootcamp
-                System.out.println("totalBootcamp::"+totalBootcamp);
-                System.out.println("trainingCentre.getTraineeArraySize():"+trainingCentre.getTraineeArraySize());
                 totalBootcamp += trainingCentre.getTraineeArraySize();
                 temp.put(trainingCentre.getClass().getSimpleName(), totalBootcamp);
             }
@@ -181,18 +180,15 @@ public class OutputManager {
     }
 
     private HashMap<String, Integer> getNumberOfTraineesWaiting(SimulationImpl simulation) {
-        int totalJava = 0;
-        int totalCsharp = 0;
-        int totalData = 0;
-        int totalDevops = 0;
-        int totalBusiness = 0;
+        Integer totalJava = 0;
+        Integer totalCsharp = 0;
+        Integer totalData = 0;
+        Integer totalDevops = 0;
+        Integer totalBusiness = 0;
 
         HashMap<String, Integer> temp = new HashMap<>();
-        //  if(simulation.getWaitingList()!=null){
         for (Trainee trainee : simulation.getWaitingList()) {
             if(trainee!=null) {
-                //System.out.println(trainee);
-                //System.out.println(trainee.getCourseName().toString());
                 if (trainee.getCourseName().toString().equals("JAVA")) {
                     totalJava += 1;
                     temp.put("Java", totalJava);

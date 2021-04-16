@@ -4,9 +4,9 @@ import java.util.ArrayList;
 
 public class TrainingCentre {
 
-    private static int idIncrementor = 0;
-    private static int numberOfCentreType;
-    private final int id;
+    private static Integer idIncrementor = 0;
+    private static Integer numberOfCentreType;
+    private final Integer id;
     private final ArrayList<Trainee> traineeArray = new ArrayList<>();
 
     private boolean openStatus = true;      // Whether we are accepting new trainees.
@@ -19,11 +19,11 @@ public class TrainingCentre {
     }
 
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public int getTraineeArraySize() {
+    public Integer getTraineeArraySize() {
         return traineeArray.size();
     }
 
