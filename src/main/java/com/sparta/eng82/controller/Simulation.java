@@ -11,5 +11,5 @@ public interface Simulation {
 
     ArrayList<TrainingCentre> generateTrainingCentre();
 
-    void startSimulation(Integer numberOfMonths, boolean outputEveryMonth);
+    void startSimulation(int numberOfMonths, boolean outputEveryMonth);
 }

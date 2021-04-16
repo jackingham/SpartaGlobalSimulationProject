@@ -11,10 +11,11 @@ import java.util.Map;
 public class OutputManager {
 
     public void generateReport(SimulationImpl simulation, int month) {
+
         OutputManager outputManager = new OutputManager();
         FileOutput fileOutput = new FileOutput();
 
-        String monthMessage = "\n##### Month: " + month + " #####";
+        String monthMessage = "\n##### Month: " + (month - 1) + " #####";
         Printer.printMessage(monthMessage);
         fileOutput.appendToFile(monthMessage);
 
