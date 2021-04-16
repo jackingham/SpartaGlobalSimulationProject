@@ -3,7 +3,7 @@ package com.sparta.eng82.utilities;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class InputValidator{
+public class InputValidator {
 
     private static final Scanner scanner = new Scanner(System.in);
 
@@ -66,7 +66,6 @@ public class InputValidator{
         }
         return chosenTime;
     }
-
 
 
 }

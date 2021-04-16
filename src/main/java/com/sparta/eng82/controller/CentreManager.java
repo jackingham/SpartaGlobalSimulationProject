@@ -42,7 +42,7 @@ public class CentreManager {
                     centreWithSpace = centre;
                 }
             } else if (centreWithSpace.getClass().getTypeName().equals("Bootcamp")) {
-                ((Bootcamp)centreWithSpace).resetNumberOfMonthsBelowRequiredAttendance();
+                ((Bootcamp) centreWithSpace).resetNumberOfMonthsBelowRequiredAttendance();
                 if (centreWithSpace.getTraineeArraySize() > Bootcamp.getMaximumCapacity() - 10) {
 
                     centreWithSpace = centre;

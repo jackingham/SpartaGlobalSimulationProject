@@ -1,9 +1,5 @@
 package com.sparta.eng82.view;
 
-import com.sparta.eng82.controller.SimulationImpl;
-import com.sparta.eng82.utilities.Printer;
-import com.sparta.eng82.view.OutputManager;
-
 import javax.swing.*;
 import java.awt.*;
 

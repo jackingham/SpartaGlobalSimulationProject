@@ -26,6 +26,10 @@ public class Bootcamp extends TrainingCentre {
         return numberOfMonthsBelowRequiredAttendance;
     }
 
+    public void setNumberOfMonthsBelowRequiredAttendance(int numberOfMonthsBelowRequiredAttendance) {
+        this.numberOfMonthsBelowRequiredAttendance = numberOfMonthsBelowRequiredAttendance;
+    }
+
     public void incrementNumberOfMonthsBelowRequiredAttendance() {
         this.numberOfMonthsBelowRequiredAttendance++;
     }
@@ -34,16 +38,12 @@ public class Bootcamp extends TrainingCentre {
         this.numberOfMonthsBelowRequiredAttendance = 0;
     }
 
-    public boolean full() {
-        return getTraineeArray().size() == getMaximumCapacity();
-    }
-
 
     /*public static void setLifetimeNumberOfBootcamps(int lifetimeNumberOfBootcamps) {
         Bootcamp.lifetimeNumberOfBootcamps = lifetimeNumberOfBootcamps;
     }*/
 
-    public void setNumberOfMonthsBelowRequiredAttendance(int numberOfMonthsBelowRequiredAttendance) {
-        this.numberOfMonthsBelowRequiredAttendance = numberOfMonthsBelowRequiredAttendance;
+    public boolean full() {
+        return getTraineeArray().size() == getMaximumCapacity();
     }
 }

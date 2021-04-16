@@ -1,12 +1,12 @@
 package com.sparta.eng82.utilities;
 
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class InputValidatorForUI {
 
     private static final Scanner scanner = new Scanner(System.in);
-    public static int getUserInput(String userTimeChoice, int years,int months) {//edited
+
+    public static int getUserInput(String userTimeChoice, int years, int months) {//edited
         try {
 
             switch (userTimeChoice) {
@@ -20,7 +20,7 @@ public class InputValidatorForUI {
                 case "ym":
                 case "my":
 
-                    return (years*12) + months;
+                    return (years * 12) + months;
 
                 default:
                     break;

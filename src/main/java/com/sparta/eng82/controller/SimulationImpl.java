@@ -80,7 +80,7 @@ public class SimulationImpl implements Simulation {
     public void startSimulation(int numberOfMonths, boolean outputEveryMonth) {
         fileOutput.clearFile();
         while (month <= numberOfMonths) {
-            if(month >= 3){
+            if (month >= 3) {
                 centreManager.closeCentre(trainingCentres);
             }
             if (month != 0) {
@@ -101,8 +101,7 @@ public class SimulationImpl implements Simulation {
                                 for (int i = 0; i < traineeIntake; i++) {
                                     centre.addTraineeToCentre(waitingList.poll());
                                 }
-                            }
-                            else {
+                            } else {
 //                                System.out.println("4: " + traineeIntake + " / " + (Bootcamp.getMaximumCapacity() - centre.getTraineeArraySize()));
                                 for (int j = 0; j < Bootcamp.getMaximumCapacity() - centre.getTraineeArraySize(); j++) {
                                     centre.addTraineeToCentre(waitingList.poll());
@@ -133,14 +132,14 @@ public class SimulationImpl implements Simulation {
 
                                 Queue<Trainee> tempWaitingList = new LinkedList<>();
 
-                                HashMap<String, Integer> stuff =  outputManager.getNumberOfOpenCentres();
+                                HashMap<String, Integer> stuff = outputManager.getNumberOfOpenCentres();
 
                                 //System.out.println(stuff.values());
                                 //System.out.println(waitingList);
 
                                 waitingList.removeIf(Objects::isNull);
 
-                                if(!waitingList.isEmpty()) {
+                                if (!waitingList.isEmpty()) {
                                     while (i < traineeIntake && j < waitingList.size()) {
                                         for (Trainee trainee : waitingList) {
                                             if (trainee.getCourseName().equals(courseTypes)) {
@@ -155,7 +154,7 @@ public class SimulationImpl implements Simulation {
                                     }
                                     //TODO - Think about this, could be computationally expensive, is there a better way to break the while loop?
 
-                                    for(Trainee trainee : tempWaitingList){
+                                    for (Trainee trainee : tempWaitingList) {
                                         centre.addTraineeToCentre(trainee);
                                     }
                                     waitingList.removeAll(tempWaitingList);
@@ -174,10 +173,10 @@ public class SimulationImpl implements Simulation {
             month++;
         }
 
-        for(TrainingCentre tc : trainingCentres){
-            if(tc.getClass().getTypeName().equals(bootcamp.getClass().getTypeName())){
+        for (TrainingCentre tc : trainingCentres) {
+            if (tc.getClass().getTypeName().equals(bootcamp.getClass().getTypeName())) {
                 System.out.println(tc.getClass().getTypeName());
-                System.out.println(((Bootcamp)tc).isOpenStatus());
+                System.out.println(tc.isOpenStatus());
                 System.out.println(tc.getTraineeArraySize());
             }
         }

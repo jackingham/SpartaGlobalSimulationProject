@@ -42,7 +42,7 @@ public class TrainingCentre {
         this.openStatus = openStatus;
     }
 
-    public void removeAllTrainees(){
+    public void removeAllTrainees() {
         traineeArray.clear();
     }
 

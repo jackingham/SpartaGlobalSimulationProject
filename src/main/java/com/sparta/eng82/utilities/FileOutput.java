@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public class FileOutput {
 
-    public FileWriter createFile(String fileName, boolean append){
+    public FileWriter createFile(String fileName, boolean append) {
         FileWriter myWriter = null;
         try {
             myWriter = new FileWriter(fileName, append);
@@ -17,7 +17,7 @@ public class FileOutput {
         return myWriter;
     }
 
-    public void appendToFile(String toFile){
+    public void appendToFile(String toFile) {
         try {
             FileWriter myWriter = this.createFile("simulation_output.txt", true);
             BufferedWriter bufferedWriter = new BufferedWriter(myWriter);
@@ -34,7 +34,7 @@ public class FileOutput {
         }
     }
 
-    public void clearFile(){
+    public void clearFile() {
         try {
             FileWriter myWriter = this.createFile("simulation_output.txt", false);
             myWriter.write("");
