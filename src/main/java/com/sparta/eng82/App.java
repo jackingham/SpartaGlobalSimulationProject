@@ -1,12 +1,28 @@
 package com.sparta.eng82;
-
-import com.sparta.eng82.controller.SimulationImpl;
-import com.sparta.eng82.utilities.InputExtension;
-import com.sparta.eng82.utilities.InputValidator;
+import com.sparta.eng82.view.UI.UI;
 
 public class App {
     public static void main(String[] args) {
-        SimulationImpl simulation = new SimulationImpl();
-        simulation.startSimulation(InputValidator.getUserInput(), InputExtension.outputEveryMonth());
+        new UI().start();
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//        SimulationImpl simulation = new SimulationImpl();
+//        simulation.startSimulation(InputValidator.getUserInput(), InputExtension.outputEveryMonth());
