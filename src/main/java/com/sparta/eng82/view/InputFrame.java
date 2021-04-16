@@ -70,9 +70,10 @@ public class InputFrame extends JFrame implements ActionListener {
 
         bottomPanel4 = new JPanel();
         labelYears = new JLabel("Years:");
-        years = new JTextField(3);
+        years = new JTextField("0",3);
+
         labelMonths = new JLabel("Months:");
-        months = new JTextField(3);
+        months = new JTextField("0",3);
         send = new JButton("Submit");
         send.addActionListener(this);
         bottomPanel4.add(labelYears);
