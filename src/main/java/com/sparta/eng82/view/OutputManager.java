@@ -2,6 +2,8 @@ package com.sparta.eng82.view;
 
 import com.sparta.eng82.controller.SimulationImpl;
 import com.sparta.eng82.model.*;
+import com.sparta.eng82.utilities.FileOutput;
+import com.sparta.eng82.utilities.Printer;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -9,60 +11,99 @@ import java.util.Map;
 public class OutputManager {
 
     public void generateReport(SimulationImpl simulation, int month) {
-        System.out.println("\n##### Month: " + month + " #####");
-
         OutputManager outputManager = new OutputManager();
+        FileOutput fileOutput = new FileOutput();
+
+        String monthMessage = "\n##### Month: " + month + " #####";
+        Printer.printMessage(monthMessage);
+        fileOutput.appendToFile(monthMessage);
+
         // number of open centres
-        System.out.println("-- Number of Open Centres per Type --");
+        String openCentrePerType = "-- Number of Open Centres per Type --";
+        Printer.printMessage(openCentrePerType);
+        fileOutput.appendToFile(openCentrePerType);
+
         HashMap<String, Integer> temp = null;
 
         temp = outputManager.getNumberOfOpenCentres();
 
         for (Map.Entry<String, Integer> entry : temp.entrySet()) {
-            System.out.println("Centre: " + entry.getKey() + " Count: " + entry.getValue().toString());
+            String output = "Centre: " + entry.getKey() + " Count: " + entry.getValue().toString();
+            Printer.printMessage(output);
+            fileOutput.appendToFile(output);
         }
         if (temp.isEmpty()) {
-            System.out.println("...there are no open centres");
+            String output = "...there are no open centres";
+            Printer.printMessage(output);
+            fileOutput.appendToFile(output);
         }
 
         temp = outputManager.getNumberOfClosedCentres();
         // number of closed centres
-        System.out.println("\n-- Number of Closed Centres per Type --");
+        String closedCentrePerType = "\n-- Number of Closed Centres per Type --";
+        Printer.printMessage(closedCentrePerType);
+        fileOutput.appendToFile(closedCentrePerType);
+
         for (Map.Entry<String, Integer> entry : temp.entrySet()) {
-            System.out.println("Centre: " + entry.getKey() + " Count: " + entry.getValue().toString());
+            String output = "Centre: " + entry.getKey() + " Count: " + entry.getValue().toString();
+            Printer.printMessage(output);
+            fileOutput.appendToFile(output);
         }
         if (temp.isEmpty()) {
-            System.out.println("...there are no closed centres");
+            String output = "...there are no closed centres";
+            Printer.printMessage(output);
+            fileOutput.appendToFile(output);
         }
 
         temp = outputManager.getNumberOfFullCentres();
         // number of full centres
-        System.out.println("\n-- Number of Full Centres per Type --");
+        String fullCentresPerType = "\n-- Number of Full Centres per Type --";
+        Printer.printMessage(fullCentresPerType);
+        fileOutput.appendToFile(fullCentresPerType);
+
         for (Map.Entry<String, Integer> entry : temp.entrySet()) {
-            System.out.println("Centre: " + entry.getKey() + " Count: " + entry.getValue().toString());
+            String output = "Centre: " + entry.getKey() + " Count: " + entry.getValue().toString();
+            Printer.printMessage(output);
+            fileOutput.appendToFile(output);
         }
         if (temp.isEmpty()) {
-            System.out.println("...there are no full centres");
+            String output = "...there are no full centres";
+            Printer.printMessage(output);
+            fileOutput.appendToFile(output);
         }
 
         temp = outputManager.getNumberOfCurrentTrainees();
         // number of current trainees in training
-        System.out.println("\n-- Number of Trainees in Training -- ");
+        String currentTrainesInTraining = "\n-- Number of Trainees in Training -- ";
+        Printer.printMessage(currentTrainesInTraining);
+        fileOutput.appendToFile(currentTrainesInTraining);
+
         for (Map.Entry<String, Integer> entry : outputManager.getNumberOfCurrentTrainees().entrySet()) {
-            System.out.println("Centre: " + entry.getKey() + " Count: " + entry.getValue().toString());
+            String output = "Centre: " + entry.getKey() + " Count: " + entry.getValue().toString();
+            Printer.printMessage(output);
+            fileOutput.appendToFile(output);
         }
         if (temp.isEmpty()) {
-            System.out.println("...there are no current trainees in training");
+            String output = "...there are no current trainees in training";
+            Printer.printMessage(output);
+            fileOutput.appendToFile(output);
         }
 
         temp = outputManager.getNumberOfTraineesWaiting(simulation);
         // number of current traines on waiting list
-        System.out.println("\n-- Number of Trainees on the Waiting List --");
+        String traineesWaitingList = "\n-- Number of Trainees on the Waiting List --";
+        Printer.printMessage(traineesWaitingList);
+        fileOutput.appendToFile(traineesWaitingList);
+
         for (Map.Entry<String, Integer> entry : temp.entrySet()) {
-            System.out.println("Course: " + entry.getKey() + " Count: " + entry.getValue().toString());
+            String output = "Course: " + entry.getKey() + " Count: " + entry.getValue().toString();
+            Printer.printMessage(output);
+            fileOutput.appendToFile(output);
         }
         if (temp.isEmpty()) {
-            System.out.println("...there are no trainees on the waiting list");
+            String output = "...there are no trainees on the waiting list";
+            Printer.printMessage(output);
+            fileOutput.appendToFile(output);
         }
     }
 

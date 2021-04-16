@@ -1,6 +1,7 @@
 package com.sparta.eng82.controller;
 
 import com.sparta.eng82.model.*;
+import com.sparta.eng82.utilities.FileOutput;
 import com.sparta.eng82.utilities.Printer;
 import com.sparta.eng82.utilities.RandomGeneratorImpl;
 import com.sparta.eng82.view.OutputManager;
@@ -18,6 +19,7 @@ public class SimulationImpl implements Simulation {
     private final TrainingHub trainingHub = new TrainingHub();
     private final CentreManager centreManager = new CentreManager();
     private final OutputManager outputManager = new OutputManager();
+    private final FileOutput fileOutput = new FileOutput();
 
     @Override
     public ArrayList<Trainee> generateTrainees(int numberOfTrainees) {
@@ -76,6 +78,7 @@ public class SimulationImpl implements Simulation {
 
     @Override
     public void startSimulation(int numberOfMonths, boolean outputEveryMonth) {
+        fileOutput.clearFile();
         while (month <= numberOfMonths) {
             if(month >= 3){
                 centreManager.closeCentre(trainingCentres);
@@ -165,7 +168,6 @@ public class SimulationImpl implements Simulation {
                 }
 
                 if (outputEveryMonth) {
-                    OutputManager outputManager = new OutputManager();
                     outputManager.generateReport(this, month);
                 }
             }
@@ -181,7 +183,6 @@ public class SimulationImpl implements Simulation {
         }
 
         if (!outputEveryMonth) {
-            OutputManager outputManager = new OutputManager();
             outputManager.generateReport(this, month);
         }
     }
