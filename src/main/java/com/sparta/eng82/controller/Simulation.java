@@ -7,9 +7,9 @@ import java.util.ArrayList;
 
 public interface Simulation {
 
-    ArrayList<Trainee> generateTrainees(int numberOfTrainees);
+    ArrayList<Trainee> generateTrainees(Integer numberOfTrainees);
 
     ArrayList<TrainingCentre> generateTrainingCentre();
 
-    void startSimulation(int numberOfMonths, boolean outputEveryMonth);
+    void startSimulation(Integer numberOfMonths, boolean outputEveryMonth);
 }

@@ -15,9 +15,8 @@ public class CentreManager {
         for (TrainingCentre centre : centres) { // Looping though all centres
             int numberOfTrainees = centre.getTraineeArraySize(); //getting the number of trainees in the current centre
             if (numberOfTrainees <= 10) { // checking if the number of trainees is less than 10
-                if (centre.getClass().getTypeName().equals("Bootcamp")) { // checks if the current centre is a bootcamp
+                if (centre.getClass().getTypeName().equals("com.sparta.eng82.model.Bootcamp")) { // checks if the current centre is a bootcamp
                     if (((Bootcamp) centre).getNumberOfMonthsBelowRequiredAttendance() == 2) { // checks if bootcamp has been active with low attendance for 3 months
-
                         displacedTrainees.addAll(centre.getTraineeArray()); // if true, removes students and adds them to an internal waiting list
                         centre.removeAllTrainees();
                         centre.setFunctionStatus(false); // closes the centre
@@ -29,28 +28,45 @@ public class CentreManager {
                     centre.removeAllTrainees();
                     centre.setFunctionStatus(false); // closes the centre
                 }
-            } else if (centreWithSpace == null) { // checks if receiving centre is "null"
-                centreWithSpace = centre; // current centre becomes available for intake
-            } else if (centreWithSpace.getClass().getTypeName().equals("TechCentre")) { // if the current "centre with space" is a TechCentre
-                if (centreWithSpace.getTraineeArraySize() > TechCentre.getMaximumCapacity() - 10) {
-
-                    centreWithSpace = centre;
-                }
-            } else if (centreWithSpace.getClass().getTypeName().equals("TrainingHub")) {
-                if (centreWithSpace.getTraineeArraySize() > TrainingHub.getMaximumCapacity() - 10) {
-
-                    centreWithSpace = centre;
-                }
-            } else if (centreWithSpace.getClass().getTypeName().equals("Bootcamp")) {
-                ((Bootcamp) centreWithSpace).resetNumberOfMonthsBelowRequiredAttendance();
-                if (centreWithSpace.getTraineeArraySize() > Bootcamp.getMaximumCapacity() - 10) {
-
-                    centreWithSpace = centre;
-                }
             } else {
-                if (displacedTrainees.size() >= 10) {
-                    for (int i = 0; i < 10; i++) {
-                        centreWithSpace.getTraineeArray().add(displacedTrainees.get(i));
+                centreWithSpace = centre;
+                if (centreWithSpace.getClass().getTypeName().equals("com.sparta.eng82.model.TechCentre")) { // if the current "centre with space" is a TechCentre
+                    if (!((TechCentre) centreWithSpace).full()) {
+                        if ((TechCentre.getMaximumCapacity() - centreWithSpace.getTraineeArraySize()) >= displacedTrainees.size()) {
+                            for (int i = 0; i < displacedTrainees.size(); i++) {
+                                centreWithSpace.getTraineeArray().add(displacedTrainees.get(i));
+                            }
+                        } else {
+                            for (int i = 0; i < (TechCentre.getMaximumCapacity() - centreWithSpace.getTraineeArraySize()); i++) {
+                                centreWithSpace.getTraineeArray().add(displacedTrainees.get(i));
+                            }
+                        }
+                    }
+                } else if (centreWithSpace.getClass().getTypeName().equals("com.sparta.eng82.model.TrainingHub")) {
+                    if (!((TrainingHub) centreWithSpace).full()) {
+                        if ((TrainingHub.getMaximumCapacity() - centreWithSpace.getTraineeArraySize()) >= displacedTrainees.size()) {
+                            for (int i = 0; i < displacedTrainees.size(); i++) {
+                                centreWithSpace.getTraineeArray().add(displacedTrainees.get(i));
+                            }
+                        } else {
+                            for (int i = 0; i < (TrainingHub.getMaximumCapacity() - centreWithSpace.getTraineeArraySize()); i++) {
+                                centreWithSpace.getTraineeArray().add(displacedTrainees.get(i));
+                            }
+                        }
+                    }
+                } else if (centreWithSpace.getClass().getTypeName().equals("com.sparta.eng82.model.Bootcamp")) {
+                    ((Bootcamp) centreWithSpace).resetNumberOfMonthsBelowRequiredAttendance();//I want to comment
+                    if (!((Bootcamp) centreWithSpace).full()) {
+                        if ((Bootcamp.getMaximumCapacity() - centreWithSpace.getTraineeArraySize()) >= displacedTrainees.size()) {
+                            for (int i = 0; i < displacedTrainees.size(); i++) {
+                                centreWithSpace.getTraineeArray().add(displacedTrainees.get(i));
+                            }
+
+                        } else {
+                            for (int i = 0; i < (Bootcamp.getMaximumCapacity() - centreWithSpace.getTraineeArraySize()); i++) {
+                                centreWithSpace.getTraineeArray().add(displacedTrainees.get(i));
+                            }
+                        }
                     }
                 }
             }
@@ -60,5 +76,4 @@ public class CentreManager {
             simulation.addDisplacedTraineesToWaitingList(displacedTrainees);
         }
     }
-
 }

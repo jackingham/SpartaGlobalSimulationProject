@@ -1,12 +1,12 @@
 package com.sparta.eng82.model;
 
 public class Trainee {
-    private static int idIncrementor = 0;
-    private final int id;
-    private final int joinMonth;
+    private static Integer idIncrementor = 0;
+    private final Integer id;
+    private final Integer joinMonth;
     private final CourseTypes courseName;
 
-    public Trainee(int joinMonth) {
+    public Trainee(Integer joinMonth) {
         this.joinMonth = joinMonth;
         id = idIncrementor++;
         this.courseName = CourseTypes.getRandomCourseType();
@@ -16,11 +16,11 @@ public class Trainee {
         return courseName;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public int getJoinMonth() {
+    public Integer getJoinMonth() {
         return joinMonth;
     }
 }
